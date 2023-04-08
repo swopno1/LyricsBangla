@@ -1,2 +1,2 @@
 export * from "./Home";
-export * from "./Example";
+export * from "./MasonLayout";

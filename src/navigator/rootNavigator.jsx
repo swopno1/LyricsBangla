@@ -1,7 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Box, Heading } from "native-base";
-import { Example, Home } from "../screens";
+import { Home, MasonLayout } from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -16,8 +15,8 @@ export function RootStack() {
         }}
       />
       <Stack.Screen
-        name="Example"
-        component={Example}
+        name="MasonLayout"
+        component={MasonLayout}
         options={{
           headerShown: false,
         }}
