@@ -8,7 +8,6 @@
     "template",
     "nativebase"
   ],
-  "license": "MIT",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -31,9 +30,9 @@
     "@babel/core": "^7.12.9"
   },
   "bugs": {
-    "url": "https://github.com/GeekyAnts/nativebase-templates/issues"
+    "url": "https://github.com/swopno1/LyricsBangla/issues"
   },
-  "homepage": "https://github.com/GeekyAnts/nativebase-templates#readme",
-  "author": "Aditya Jamuar",
+  "homepage": "https://github.com/swopno1/LyricsBangla#readme",
+  "author": "Md Amir Hossain",
   "private": true
 }
