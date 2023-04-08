@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Box, Heading } from "native-base";
+import { Example, Home } from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -22,21 +23,5 @@ export function RootStack() {
         }}
       />
     </Stack.Navigator>
-  );
-}
-
-function Home() {
-  return (
-    <Box>
-      <Heading>Lyrics Bangla</Heading>
-    </Box>
-  );
-}
-
-function Example() {
-  return (
-    <Box>
-      <Heading>Lyrics Bangla Example</Heading>
-    </Box>
   );
 }
