@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home, MasonLayout } from "../screens";
+import { Home, Notification } from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -8,15 +8,15 @@ export function RootStack() {
   return (
     <Stack.Navigator initialRouteName="LyricksBangla">
       <Stack.Screen
-        name="home"
+        name="Home"
         component={Home}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="MasonLayout"
-        component={MasonLayout}
+        name="Notification"
+        component={Notification}
         options={{
           headerShown: false,
         }}

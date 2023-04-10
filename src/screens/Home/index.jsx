@@ -17,10 +17,10 @@ export const Home = ({ navigation }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const components = [
     {
-      name: "Alert",
+      name: "Home",
     },
     {
-      name: "Avatar",
+      name: "Notification",
     },
   ];
 
@@ -74,9 +74,7 @@ export const Home = ({ navigation }) => {
           {components.map((comp, index) => (
             <List.Item
               key={index}
-              onPress={() =>
-                navigation.navigate("component", { name: comp.name })
-              }
+              onPress={() => navigation.navigate("Notification")}
               _hover={{ bg: "coolGray.300" }}
             >
               <HStack>

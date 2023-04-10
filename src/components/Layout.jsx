@@ -1,4 +1,11 @@
-import { ArrowBackIcon, Box, Heading, HStack, Link } from "native-base";
+import {
+  ArrowBackIcon,
+  Box,
+  Heading,
+  HStack,
+  Link,
+  useColorMode,
+} from "native-base";
 import React from "react";
 import { Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
