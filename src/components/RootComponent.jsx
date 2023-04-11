@@ -2,13 +2,10 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { Box, useColorModeValue, useToken } from "native-base";
 import { RootStack } from "../navigator/rootNavigator";
+import { BottomTabs } from "../navigator/bottomTabs";
 
 export const Root = () => {
-  const [lightBg, darkBg] = useToken(
-    "colors",
-    ["coolGray.50", "blueGray.900"],
-    "blueGray.900"
-  );
+  const [lightBg, darkBg] = useToken("colors", ["white", "black"], "black");
   const bgColor = useColorModeValue(lightBg, darkBg);
 
   return (
@@ -16,11 +13,13 @@ export const Root = () => {
       <Box
         flex={1}
         w="100%"
-        _light={{ bg: "coolGray.50" }}
-        _dark={{ bg: "blueGray.900" }}
+        px={4}
+        _light={{ bg: "white" }}
+        _dark={{ bg: "black" }}
         _web={{ overflowX: "hidden" }}
       >
-        <RootStack />
+        <BottomTabs />
+        {/* <RootStack /> */}
       </Box>
     </NavigationContainer>
   );

@@ -59,7 +59,7 @@ export const Layout = ({
               {title && <ArrowBackIcon mx={2} />}
             </Pressable>
             <Heading
-              color={colorMode == "dark" ? "white" : "gray.800"}
+              color={colorMode == "dark" ? "white" : "black"}
               _web={{ py: 2 }}
               isTruncated
             >
