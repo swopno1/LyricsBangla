@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, useColorMode, View } from "native-base";
 import { TouchableOpacity } from "react-native";
 import { Contact, HomeTab, Profile, Settings } from "../screens/Tabs";
+import { MaterialCommunityIcons, Entypo, Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -10,12 +11,60 @@ export const BottomTabs = () => {
     <Tab.Navigator
       initialRouteName="HomeTab"
       // tabBar={TabBar} // This is for customized tab bar. Yet need to update.
-      sceneContainerStyle={{ backgroundColor: "white" }}
+      screenOptions={{
+        headerShown: false, // This is for hiding tab header
+        tabBarActiveTintColor: "#e91e63", // Active tab color
+      }}
+      // sceneContainerStyle={{ backgroundColor: "white" }} // This is useful when tab header is shown
     >
-      <Tab.Screen name="HomeTab" component={HomeTab} />
-      <Tab.Screen name="Settings" component={Settings} />
-      <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="Contact" component={Contact} />
+      <Tab.Screen
+        name="HomeTab"
+        component={HomeTab}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          tabBarLabel: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="cog" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="account-settings"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Contact"
+        component={Contact}
+        options={{
+          tabBarLabel: "Contact Us",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="account-supervisor"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
