@@ -2,16 +2,16 @@ import React from "react";
 import { ScrollView } from "react-native";
 import {
   Box,
-  Divider,
+  Center,
+  Flex,
   Heading,
   HStack,
-  Icon,
-  List,
+  Spacer,
   Switch,
   Text,
   useColorMode,
 } from "native-base";
-import { MaterialCommunityIcons, Entypo, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 export const Home = ({ navigation }) => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -19,20 +19,21 @@ export const Home = ({ navigation }) => {
   return (
     <Box pt={12}>
       <ScrollView contentContainerStyle={{ width: "100%" }}>
-        <Box px={3}>
-          <Heading p={3} flex={1} justifyContent="space-between">
+        <Heading p={3} flex={1} justifyContent="space-between">
+          <Flex direction="row">
             <Text>Lyrics Bangla</Text>
-            <HStack alignItems="center" space={4} mx={2}>
+            <Spacer />
+            <Flex direction="row">
               <Ionicons name="sunny-sharp" size={16} />
               <Switch
-                mx="auto"
+                mx={1}
                 onToggle={toggleColorMode}
                 isChecked={colorMode === "dark"}
               />
               <Ionicons name="moon-sharp" size={16} />
-            </HStack>
-          </Heading>
-        </Box>
+            </Flex>
+          </Flex>
+        </Heading>
       </ScrollView>
     </Box>
   );
