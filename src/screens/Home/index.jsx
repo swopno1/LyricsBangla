@@ -19,18 +19,20 @@ export const Home = ({ navigation }) => {
   return (
     <Box pt={12}>
       <ScrollView contentContainerStyle={{ width: "100%" }}>
-        <Heading p={3} mx={2}>
-          <Text>Lyrics Bangla</Text>
-          <HStack alignItems="center" space={4} py={3} px={3} mx={2}>
-            <Ionicons name="sunny-sharp" size={16} />
-            <Switch
-              mx="auto"
-              onToggle={toggleColorMode}
-              isChecked={colorMode === "dark"}
-            />
-            <Ionicons name="moon-sharp" size={16} />
-          </HStack>
-        </Heading>
+        <Box px={3}>
+          <Heading p={3} flex={1} justifyContent="space-between">
+            <Text>Lyrics Bangla</Text>
+            <HStack alignItems="center" space={4} mx={2}>
+              <Ionicons name="sunny-sharp" size={16} />
+              <Switch
+                mx="auto"
+                onToggle={toggleColorMode}
+                isChecked={colorMode === "dark"}
+              />
+              <Ionicons name="moon-sharp" size={16} />
+            </HStack>
+          </Heading>
+        </Box>
       </ScrollView>
     </Box>
   );
