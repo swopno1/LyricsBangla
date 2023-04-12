@@ -9,6 +9,8 @@ export const BaseTheme = extendTheme({
     },
   },
   colors: {
+    dark: "#0d0c0d",
+    light: "#f3f2f2",
     slateGray: {
       50: "#f3f2f2",
       100: "#d8d8d8",

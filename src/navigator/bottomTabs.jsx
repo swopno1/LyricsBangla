@@ -1,15 +1,16 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, useColorMode, View } from "native-base";
 import { TouchableOpacity } from "react-native";
-import { Contact, HomeTab, Profile, Settings } from "../screens/Tabs";
+import { Contact, Profile, Settings } from "../screens/Tabs";
 import { MaterialCommunityIcons, Entypo, Ionicons } from "@expo/vector-icons";
+import { RootStack } from "./rootNavigator";
 
 const Tab = createBottomTabNavigator();
 
 export const BottomTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="HomeTab"
+      initialRouteName="Home"
       // tabBar={TabBar} // This is for customized tab bar. Yet need to update.
       screenOptions={{
         headerShown: false, // This is for hiding tab header
@@ -18,8 +19,8 @@ export const BottomTabs = () => {
       // sceneContainerStyle={{ backgroundColor: "white" }} // This is useful when tab header is shown
     >
       <Tab.Screen
-        name="HomeTab"
-        component={HomeTab}
+        name="Home"
+        component={() => <RootStack />}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
