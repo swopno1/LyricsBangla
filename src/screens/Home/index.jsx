@@ -25,21 +25,6 @@ export const Home = ({ navigation }) => {
     <Box pt={12}>
       <ScrollView contentContainerStyle={{ width: "100%" }}>
         <Box p={3}>
-          {/* <Heading flex={1} py={3}>
-            <Flex direction="row">
-              <Text>Lyrics Bangla</Text>
-              <Spacer />
-              <Flex direction="row">
-                <Ionicons name="sunny-sharp" size={16} />
-                <Switch
-                  mx={1}
-                  onToggle={toggleColorMode}
-                  isChecked={colorMode === "dark"}
-                />
-                <Ionicons name="moon-sharp" size={16} />
-              </Flex>
-            </Flex>
-          </Heading> */}
           <VStack>
             <VStack direction="row">
               <Flex direction="row" alignItems={"center"}>
@@ -60,6 +45,9 @@ export const Home = ({ navigation }) => {
               <Spacer />
               <Flex direction="row">
                 <IconButton
+                  onPress={() => {
+                    navigation.navigate("Notification");
+                  }}
                   icon={<Ionicons name="notifications-outline" size={28} />}
                 />
                 <IconButton
