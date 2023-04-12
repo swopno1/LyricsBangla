@@ -3,8 +3,10 @@ import { Box, Text } from "native-base";
 
 export const Notification = () => {
   return (
-    <Box>
-      <Text>Notification</Text>
+    <Box pt={12}>
+      <ScrollView contentContainerStyle={{ width: "100%" }}>
+        Notification
+      </ScrollView>
     </Box>
   );
 };
