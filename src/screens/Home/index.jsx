@@ -9,6 +9,7 @@ import {
   Icon,
   IconButton,
   Input,
+  Link,
   Spacer,
   Switch,
   Text,
@@ -17,6 +18,7 @@ import {
 } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import SearchBox from "../../components/form/SearchBox";
+import FullCard from "../../components/card/FullCard";
 
 export const Home = ({ navigation }) => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -58,8 +60,13 @@ export const Home = ({ navigation }) => {
             <SearchBox />
           </VStack>
           <VStack>
-            <Box></Box>
-            <Box></Box>
+            <VStack flex={1} flexDirection={"row"} py={3}>
+              <Heading fontSize={"xl"}>Category</Heading>
+              <Spacer />
+              <Link href="#">See All</Link>
+            </VStack>
+            <FullCard />
+            <VStack></VStack>
           </VStack>
           <VStack></VStack>
         </Box>

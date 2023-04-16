@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const SearchBox = () => {
   return (
-    <VStack py={3}>
+    <VStack py={6}>
       <Input
         placeholder="Search"
         width="100%"

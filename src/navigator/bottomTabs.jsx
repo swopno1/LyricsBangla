@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, useColorMode, View } from "native-base";
 import { TouchableOpacity } from "react-native";
-import { Contact, Profile, Settings } from "../screens/Tabs";
+import { Contact, HomeTab, Profile, Settings } from "../screens/Tabs";
 import { MaterialCommunityIcons, Entypo, Ionicons } from "@expo/vector-icons";
 import { RootStack } from "./rootNavigator";
 
@@ -19,8 +19,8 @@ export const BottomTabs = () => {
       // sceneContainerStyle={{ backgroundColor: "white" }} // This is useful when tab header is shown
     >
       <Tab.Screen
-        name="Home"
-        component={() => <RootStack />}
+        name="HomeTab"
+        component={(props) => <RootStack {...props} />}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (

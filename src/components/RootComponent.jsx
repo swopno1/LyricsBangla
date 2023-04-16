@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { Box, useColorModeValue, useToken } from "native-base";
+import { Box, StatusBar, useColorModeValue, useToken } from "native-base";
 // import { RootStack } from "../navigator/rootNavigator";
 import { BottomTabs } from "../navigator/bottomTabs";
 
