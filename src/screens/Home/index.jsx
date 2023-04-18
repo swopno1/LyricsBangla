@@ -19,6 +19,8 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import SearchBox from "../../components/form/SearchBox";
 import FullCard from "../../components/card/FullCard";
+import { mainNav } from "../../lib/data";
+import NavCard from "../../components/card/NavCard";
 
 export const Home = ({ navigation }) => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -66,7 +68,28 @@ export const Home = ({ navigation }) => {
               <Link href="#">See All</Link>
             </VStack>
             <FullCard />
-            <VStack></VStack>
+            <VStack py={3}>
+              <Box
+                py={3}
+                flex={1}
+                flexDirection={"row"}
+                flexWrap="wrap"
+                width={"100%"}
+              >
+                {mainNav.map((nav, index) => (
+                  <Box
+                    key={nav._id}
+                    flexWrap={"wrap"}
+                    justifyContent={"center"}
+                    alignContent={"center"}
+                    alignSelf={"center"}
+                    width={"25%"}
+                  >
+                    <NavCard nav={nav} />
+                  </Box>
+                ))}
+              </Box>
+            </VStack>
           </VStack>
           <VStack></VStack>
         </Box>
