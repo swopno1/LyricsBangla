@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home, Notification } from "../screens";
+import { Article, Home, Notification } from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -12,6 +12,7 @@ export function RootStack() {
     >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Notification" component={Notification} />
+      <Stack.Screen name="Article" component={Article} />
     </Stack.Navigator>
   );
 }

@@ -10,6 +10,7 @@ import {
   IconButton,
   Input,
   Link,
+  Pressable,
   Spacer,
   Switch,
   Text,
@@ -77,7 +78,12 @@ export const Home = ({ navigation }) => {
                 width={"100%"}
               >
                 {mainNav.map((nav, index) => (
-                  <Box
+                  <Pressable
+                    onPress={() => {
+                      navigation.navigate("Article", {
+                        category: nav.name,
+                      });
+                    }}
                     key={nav._id}
                     flexWrap={"wrap"}
                     justifyContent={"center"}
@@ -86,7 +92,7 @@ export const Home = ({ navigation }) => {
                     width={"25%"}
                   >
                     <NavCard nav={nav} />
-                  </Box>
+                  </Pressable>
                 ))}
               </Box>
             </VStack>
