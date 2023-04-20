@@ -70,13 +70,7 @@ export const Home = ({ navigation }) => {
             </VStack>
             <FullCard />
             <VStack py={3}>
-              <Box
-                py={3}
-                flex={1}
-                flexDirection={"row"}
-                flexWrap="wrap"
-                width={"100%"}
-              >
+              <Flex py={3} flexDirection={"row"} flexWrap="wrap" width={"100%"}>
                 {mainNav.map((nav, index) => (
                   <Pressable
                     onPress={() => {
@@ -92,9 +86,10 @@ export const Home = ({ navigation }) => {
                     width={"25%"}
                   >
                     <NavCard nav={nav} />
+                    <Spacer />
                   </Pressable>
                 ))}
-              </Box>
+              </Flex>
             </VStack>
           </VStack>
           <VStack></VStack>
