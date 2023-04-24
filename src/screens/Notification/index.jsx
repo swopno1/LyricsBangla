@@ -1,14 +1,14 @@
 import React from "react";
 import { Box, ScrollView, Text } from "native-base";
+import { TopBar } from "../../components/Layout";
 
 export const Notification = () => {
   return (
-    <Box pt={12}>
-      <ScrollView contentContainerStyle={{ width: "100%" }}>
-        <Box p={3}>
-          <Text>Notification</Text>
-        </Box>
-      </ScrollView>
-    </Box>
+    <ScrollView contentContainerStyle={{ width: "100%" }}>
+      <Box pt={12} px={3} pb={3}>
+        <TopBar />
+        <Text>Notification</Text>
+      </Box>
+    </ScrollView>
   );
 };

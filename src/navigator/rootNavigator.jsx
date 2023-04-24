@@ -7,7 +7,7 @@ const Stack = createStackNavigator();
 export function RootStack() {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Notification"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Home" component={Home} />
