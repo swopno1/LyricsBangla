@@ -5,7 +5,7 @@ export const TopBar = ({ navigation }) => {
   return (
     <HStack>
       <Box>
-        <Tex>Back</Tex>
+        <Text>Back</Text>
       </Box>
     </HStack>
   );

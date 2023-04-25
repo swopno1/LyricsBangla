@@ -86,7 +86,6 @@ export const Home = ({ navigation }) => {
                     width={"25%"}
                   >
                     <NavCard nav={nav} />
-                    <Spacer />
                   </Pressable>
                 ))}
               </Flex>

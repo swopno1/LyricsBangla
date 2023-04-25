@@ -8,7 +8,7 @@ const NavCard = ({ nav }) => {
       width="full"
       px={1}
       py={3}
-      textAlign={"center"}
+      textAlign="start"
       justifyContent="center"
       alignItems="center"
     >
@@ -17,7 +17,7 @@ const NavCard = ({ nav }) => {
         borderRadius={"full"}
         width="55"
         height="55"
-        justifyContent="center"
+        justifyContent="start"
       >
         <Ionicons name={nav.icon} size={32} />
       </Box>

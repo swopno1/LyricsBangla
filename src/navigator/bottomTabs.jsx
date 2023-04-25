@@ -20,7 +20,7 @@ export const BottomTabs = () => {
     >
       <Tab.Screen
         name="HomeTab"
-        component={(props) => <RootStack {...props} />}
+        component={(props) => <RootStack {...props}></RootStack>}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (

@@ -24,7 +24,12 @@ const FullCard = () => {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <Image src={Car} textAlign={"center"} alt="Car" size={"xl"} />
+          <Image
+            // src={{ uri: "https://wallpaperaccess.com/full/317501.jpg" }}
+            textAlign={"center"}
+            alt="Car"
+            size={"xl"}
+          />
         </Box>
       </Box>
     </VStack>

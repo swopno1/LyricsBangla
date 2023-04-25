@@ -1,12 +1,14 @@
 import React from "react";
-import { Box, Text } from "native-base";
+import { Box, ScrollView, Text } from "native-base";
 
 export const Article = ({ route }) => {
   const { category } = route.params;
   console.log(category);
   return (
-    <Box>
-      <Text>{category}</Text>
-    </Box>
+    <ScrollView>
+      <Box>
+        <Text>{category}</Text>
+      </Box>
+    </ScrollView>
   );
 };
