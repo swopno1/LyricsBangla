@@ -10,11 +10,11 @@ import { Stack, useRouter, useSearchParams } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
 import axios from "axios";
 
-import { ScreenHeaderBtn, NearbyJobCard } from "../../components";
+import { ScreenHeaderBtn, NearbysongCard } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
 
-const JobSearch = () => {
+const SongSearch = () => {
   const params = useSearchParams();
   const router = useRouter();
 
@@ -86,9 +86,9 @@ const JobSearch = () => {
       <FlatList
         data={searchResult}
         renderItem={({ item }) => (
-          <NearbyJobCard
-            job={item}
-            handleNavigate={() => router.push(`/job-details/${item.job_id}`)}
+          <NearbySongCard
+            song={item}
+            handleNavigate={() => router.push(`/song-details/${item.job_id}`)}
           />
         )}
         keyExtractor={(item) => item.job_id}
@@ -97,7 +97,7 @@ const JobSearch = () => {
           <>
             <View style={styles.container}>
               <Text style={styles.searchTitle}>{params.id}</Text>
-              <Text style={styles.noOfSearchedJobs}>Job Opportunities</Text>
+              <Text style={styles.noOfSearchedSongs}>Song Opportunities</Text>
             </View>
             <View style={styles.loaderContainer}>
               {searchLoader ? (
@@ -140,4 +140,4 @@ const JobSearch = () => {
   );
 };
 
-export default JobSearch;
+export default SongSearch;

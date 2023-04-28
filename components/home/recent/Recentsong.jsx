@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./recentsong.style";
 import { COLORS } from "../../../constants";
-import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
+import NearbySongCard from "../../common/cards/nearby/NearbySongCard";
 import useFetch from "../../../hook/useFetch";
 
 const Recentsong = () => {
@@ -29,11 +29,11 @@ const Recentsong = () => {
         ) : error ? (
           <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
-          data?.map((job) => (
-            <NearbyJobCard
-              job={job}
-              key={`nearby-job-${job.job_id}`}
-              handleNavigate={() => router.push(`/job-details/${job.job_id}`)}
+          data?.map((song) => (
+            <NearbySongCard
+              song={song}
+              key={`nearby-song-${song.job_id}`}
+              handleNavigate={() => router.push(`/song-details/${song.job_id}`)}
             />
           ))
         )}

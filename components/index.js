@@ -5,15 +5,15 @@ import Welcome from "./home/welcome/Welcome";
 import Recentsong from "./home/recent/Recentsong";
 import Popularsongs from "./home/popular/Popularsongs";
 
-// job details screen
-import Company from "./jobdetails/company/Company";
-import { default as JobTabs } from "./jobdetails/tabs/Tabs";
-import { default as JobAbout } from "./jobdetails/about/About";
-import { default as JobFooter } from "./jobdetails/footer/Footer";
-import Specifics from "./jobdetails/specifics/Specifics";
+// Song details screen
+import Company from "./songdetails/company/Company";
+import { default as SongTabs } from "./songdetails/tabs/Tabs";
+import { default as SongAbout } from "./songdetails/about/About";
+import { default as SongFooter } from "./songdetails/footer/Footer";
+import Specifics from "./songdetails/specifics/Specifics";
 
 // common
-import NearbyJobCard from "./common/cards/nearby/NearbyJobCard";
+import RecentSongCard from "./common/cards/nearby/NearbySongCard";
 
 export {
   ScreenHeaderBtn,
@@ -21,9 +21,9 @@ export {
   Recentsong,
   Popularsongs,
   Company,
-  JobTabs,
-  JobAbout,
-  JobFooter,
+  SongTabs,
+  SongAbout,
+  SongFooter,
   Specifics,
-  NearbyJobCard,
+  RecentSongCard,
 };

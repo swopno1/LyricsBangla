@@ -11,9 +11,9 @@ import useFetch from "../../hook/useFetch";
 import { COLORS, SIZES, icons } from "../../constants";
 import {
   Company,
-  JobAbout,
-  JobFooter,
-  JobTabs,
+  SongAbout,
+  SongFooter,
+  SongTabs,
   ScreenHeaderBtn,
   Specifics,
 } from "../../components";
@@ -21,7 +21,7 @@ import { useCallback, useState } from "react";
 
 const tabs = ["About", "Qualification", "Responsibilities"];
 
-const JobDetails = () => {
+const SongDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
 
@@ -42,7 +42,7 @@ const JobDetails = () => {
     switch (activeTab) {
       case "About":
         return (
-          <JobAbout info={data[0].job_description ?? "No data provided"} />
+          <SongAbout info={data[0].job_description ?? "No data provided"} />
         );
         break;
       case "Qualification":
@@ -102,12 +102,12 @@ const JobDetails = () => {
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
               <Company
                 companyLogo={data[0].employer_logo}
-                jobTitle={data[0].job_title}
+                songTitle={data[0].job_title}
                 companyName={data[0].employer_name}
                 location={data[0].job_country}
               />
 
-              <JobTabs
+              <SongTabs
                 tabs={tabs}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
@@ -117,7 +117,7 @@ const JobDetails = () => {
             </View>
           )}
         </ScrollView>
-        <JobFooter
+        <SongFooter
           url={
             data[0]?.job_google_link ??
             "https://careers.google.com/jobs/results"
@@ -127,4 +127,4 @@ const JobDetails = () => {
     </SafeAreaView>
   );
 };
-export default JobDetails;
+export default SongDetails;

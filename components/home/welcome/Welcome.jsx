@@ -12,7 +12,7 @@ import { useRouter } from "expo-router";
 import styles from "./welcome.style";
 import { icons, SIZES } from "../../../constants";
 
-const jobTypes = [
+const songTypes = [
   "আধুনিক বাংলা",
   "দেশাত্মবোধক",
   "বাউল গান",
@@ -30,7 +30,7 @@ const jobTypes = [
 
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
-  const [activeJobType, setActiveJobType] = useState("Full-time");
+  const [activeSongType, setActiveSongType] = useState("Full-time");
 
   return (
     <View>
@@ -60,16 +60,16 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
 
       <View style={styles.tabsContainer}>
         <FlatList
-          data={jobTypes}
+          data={songTypes}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={styles.tab(activeJobType, item)}
+              style={styles.tab(activeSongType, item)}
               onPress={() => {
-                setActiveJobType(item);
+                setActiveSongType(item);
                 router.push(`/search/${item}`);
               }}
             >
-              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
+              <Text style={styles.tabText(activeSongType, item)}>{item}</Text>
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item}

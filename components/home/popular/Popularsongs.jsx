@@ -10,7 +10,7 @@ import {
 
 import styles from "./popularsongs.style";
 import { COLORS, SIZES } from "../../../constants";
-import PopularJobCard from "../../common/cards/popular/PopularJobCard";
+import PopularSongCard from "../../common/cards/popular/PopularSongCard";
 import useFetch from "../../../hook/useFetch";
 
 const Popularsongs = () => {
@@ -20,11 +20,11 @@ const Popularsongs = () => {
     num_pages: "1",
   });
 
-  const [selectedJob, setSelectedJob] = useState();
+  const [selectedSong, setSelectedSong] = useState();
 
   const handleCardPress = (item) => {
-    router.push(`/job-details/${item.job_id}`);
-    setSelectedJob(item.job_id);
+    router.push(`/song-details/${item.job_id}`);
+    setSelectedSong(item.job_id);
   };
 
   return (
@@ -45,9 +45,9 @@ const Popularsongs = () => {
           <FlatList
             data={data}
             renderItem={({ item }) => (
-              <PopularJobCard
+              <PopularSongCard
                 item={item}
-                selectedJob={selectedJob}
+                selectedSong={selectedSong}
                 handleCardPress={handleCardPress}
               />
             )}

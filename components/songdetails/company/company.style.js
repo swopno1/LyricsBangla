@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
     width: "80%",
     height: "80%",
   },
-  jobTitleBox: {
+  songTitleBox: {
     marginTop: SIZES.small,
   },
-  jobTitle: {
+  songTitle: {
     fontSize: SIZES.large,
     color: COLORS.primary,
     fontFamily: FONT.bold,
