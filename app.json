@@ -1,28 +1,10 @@
 {
   "expo": {
-    "name": "LyricsBangla",
-    "slug": "LyricsBangla",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/other/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/images/other/splash.jpg",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/other/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
+    "scheme": "acme",
     "web": {
-      "favicon": "./assets/images/other/favicon.png"
-    }
+      "bundler": "metro"
+    },
+    "name": "LyricsBangla",
+    "slug": "LyricsBangla"
   }
 }
