@@ -30,7 +30,7 @@ const Popularsongs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Popular jobs</Text>
+        <Text style={styles.headerTitle}>জনপ্রিয় গান</Text>
         <TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
         </TouchableOpacity>
@@ -40,7 +40,7 @@ const Popularsongs = () => {
         {isLoading ? (
           <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
-          <Text>Something went wrong</Text>
+          <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
           <FlatList
             data={data}

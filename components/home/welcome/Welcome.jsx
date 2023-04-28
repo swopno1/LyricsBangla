@@ -12,7 +12,21 @@ import { useRouter } from "expo-router";
 import styles from "./welcome.style";
 import { icons, SIZES } from "../../../constants";
 
-const jobTypes = ["Full-time", "Part-time", "Contractor"];
+const jobTypes = [
+  "আধুনিক বাংলা",
+  "দেশাত্মবোধক",
+  "বাউল গান",
+  "নজরুলগীতি",
+  "রবীন্দ্রসঙ্গীত",
+  "লালনগীতি",
+  "ভক্তিগীতি",
+  "ফোক গান",
+  "ব্যান্ড ও পপ",
+  "সিনেমার গান",
+  "পদাবলী-কীর্তন",
+  "অসম্পূর্ণ",
+  "বিবিধ গান",
+];
 
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
@@ -22,7 +36,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
     <View>
       <View style={styles.container}>
         <Text style={styles.userName}>Welcome to Lyrics Bangla</Text>
-        <Text style={styles.welcomeMessage}>Find bangla song lyrics</Text>
+        <Text style={styles.welcomeMessage}>পছন্দের গানের লিরিকস খুঁজুন</Text>
       </View>
 
       <View style={styles.searchContainer}>
@@ -31,7 +45,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
             style={styles.searchInput}
             value={searchTerm}
             onChangeText={(text) => setSearchTerm(text)}
-            placeholder="What are you looking for?"
+            placeholder="আপনি কোন গানের কথা খুঁজছেন?"
           />
         </View>
 

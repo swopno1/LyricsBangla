@@ -17,7 +17,7 @@ const Recentsong = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Nearby jobs</Text>
+        <Text style={styles.headerTitle}>নতুন গান</Text>
         <TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
         </TouchableOpacity>
@@ -27,7 +27,7 @@ const Recentsong = () => {
         {isLoading ? (
           <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
-          <Text>Something went wrong</Text>
+          <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
           data?.map((job) => (
             <NearbyJobCard
