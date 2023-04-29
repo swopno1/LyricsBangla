@@ -11,20 +11,20 @@ import {
 import styles from "./popularsongs.style";
 import { COLORS, SIZES } from "../../../constants";
 import PopularSongCard from "../../common/cards/popular/PopularSongCard";
-import useFetch from "../../../hook/useFetch";
+// import useFetch from "../../../hook/useFetch";
+import useSong from "../../../hook/useSong";
 
 const Popularsongs = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useFetch("search", {
-    query: "React developer",
-    num_pages: "1",
-  });
+  // *Attention* Will need to add params for filtering popular song
+  const { data, isLoading, error } = useSong("alldata");
+  console.log(data);
 
   const [selectedSong, setSelectedSong] = useState();
 
   const handleCardPress = (item) => {
-    router.push(`/song-details/${item.job_id}`);
-    setSelectedSong(item.job_id);
+    router.push(`/song-details/${item.data._id}`);
+    setSelectedSong(item._id);
   };
 
   return (
@@ -43,7 +43,7 @@ const Popularsongs = () => {
           <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
           <FlatList
-            data={data}
+            data={data.data}
             renderItem={({ item }) => (
               <PopularSongCard
                 item={item}

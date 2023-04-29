@@ -6,27 +6,28 @@ const useSong = (endpoint, query) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const option = {
+  const options = {
     method: "GET",
-    url: `http://localhost:4001/${endpoint}`,
-    headers: { "content-type": "application/json" },
-    params: { ...query },
+    headers: {
+      "content-type": "application/json",
+    },
   };
 
   const fetchData = async () => {
     setIsLoading(true);
 
-    try {
-      const response = await axios.request(option);
-
-      setData(response.data);
-      setIsLoading(false);
-    } catch (err) {
-      setError(err);
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
+    axios
+      .get(`http://localhost:4001/${endpoint}`, options)
+      .then((res) => {
+        setData(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {

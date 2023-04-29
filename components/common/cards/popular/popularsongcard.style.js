@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: (selectedSong, item) => ({
     width: 250,
     padding: SIZES.xLarge,
-    backgroundColor: selectedSong === item.job_id ? COLORS.primary : "#FFF",
+    backgroundColor: selectedSong === item._id ? COLORS.primary : "#FFF",
     borderRadius: SIZES.medium,
     justifyContent: "space-between",
     ...SHADOWS.medium,
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   logoContainer: (selectedSong, item) => ({
     width: 50,
     height: 50,
-    backgroundColor: selectedSong === item.job_id ? "#FFF" : COLORS.white,
+    backgroundColor: selectedSong === item._id ? "#FFF" : COLORS.white,
     borderRadius: SIZES.medium,
     justifyContent: "center",
     alignItems: "center",
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   songName: (selectedSong, item) => ({
     fontSize: SIZES.large,
     fontFamily: FONT.medium,
-    color: selectedSong === item.song_id ? COLORS.white : COLORS.primary,
+    color: selectedSong === item._id ? COLORS.white : COLORS.primary,
   }),
   infoWrapper: {
     flexDirection: "row",
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   publisher: (selectedSong, item) => ({
     fontSize: SIZES.medium - 2,
     fontFamily: FONT.regular,
-    color: selectedSong === item.job_id ? COLORS.white : COLORS.primary,
+    color: selectedSong === item._id ? COLORS.white : COLORS.primary,
   }),
   location: {
     fontSize: SIZES.medium - 2,
