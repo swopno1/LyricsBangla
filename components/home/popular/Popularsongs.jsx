@@ -11,19 +11,17 @@ import {
 import styles from "./popularsongs.style";
 import { COLORS, SIZES } from "../../../constants";
 import PopularSongCard from "../../common/cards/popular/PopularSongCard";
-// import useFetch from "../../../hook/useFetch";
 import useSong from "../../../hook/useSong";
 
 const Popularsongs = () => {
   const router = useRouter();
   // *Attention* Will need to add params for filtering popular song
-  const { data, isLoading, error } = useSong("alldata");
-  console.log(data);
+  const { data, isLoading, error } = useSong("songs");
 
   const [selectedSong, setSelectedSong] = useState();
 
   const handleCardPress = (item) => {
-    router.push(`/song-details/${item.data._id}`);
+    router.push(`/song-details/${item._id}`);
     setSelectedSong(item._id);
   };
 
@@ -43,7 +41,7 @@ const Popularsongs = () => {
           <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
           <FlatList
-            data={data.data}
+            data={data}
             renderItem={({ item }) => (
               <PopularSongCard
                 item={item}
@@ -51,7 +49,7 @@ const Popularsongs = () => {
                 handleCardPress={handleCardPress}
               />
             )}
-            keyExtractor={(item) => item.job_id}
+            keyExtractor={(item) => item._id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
           />

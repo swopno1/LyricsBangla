@@ -30,17 +30,15 @@ const SongSearch = () => {
     try {
       const options = {
         method: "GET",
-        url: `https://jsearch.p.rapidapi.com/search`,
+        url: `https://lyrics-api-orpin.vercel.app/songs/${params.id}`,
         headers: {
-          "X-RapidAPI-Key":
-            "0110da4046mshe21086578ab5049p1ff8ddjsnad7ba99e3746",
-          "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-        },
-        params: {
-          query: params.id,
-          page: page.toString(),
+          "content-type": "application/json",
         },
       };
+
+      // "X-RapidAPI-Key":
+      //       "0110da4046mshe21086578ab5049p1ff8ddjsnad7ba99e3746",
+      //     "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
 
       const response = await axios.request(options);
       setSearchResult(response.data.data);
@@ -88,10 +86,10 @@ const SongSearch = () => {
         renderItem={({ item }) => (
           <NearbySongCard
             song={item}
-            handleNavigate={() => router.push(`/song-details/${item.job_id}`)}
+            handleNavigate={() => router.push(`/song-details/${item._id}`)}
           />
         )}
-        keyExtractor={(item) => item.job_id}
+        keyExtractor={(item) => item._id}
         contentContainerStyle={{ padding: SIZES.medium, rowGap: SIZES.medium }}
         ListHeaderComponent={() => (
           <>

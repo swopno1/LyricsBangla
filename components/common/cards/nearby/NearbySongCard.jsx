@@ -20,10 +20,10 @@ const NearbySongCard = ({ song, handleNavigate }) => {
 
       <View style={styles.textContainer}>
         <Text style={styles.songName} numberOfLines={1}>
-          {song?.job_title}
+          {song?.title}
         </Text>
 
-        <Text style={styles.songType}>{song?.job_employment_type}</Text>
+        <Text style={styles.songType}>{song?.label}</Text>
       </View>
     </TouchableOpacity>
   );

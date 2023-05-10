@@ -4,7 +4,6 @@ import styles from "./popularsongcard.style";
 import { checkImageURL } from "../../../../utils";
 
 const PopularSongCard = ({ item, selectedSong, handleCardPress }) => {
-  console.log(item);
   return (
     <TouchableOpacity
       style={styles.container(selectedSong, item)}
@@ -22,16 +21,16 @@ const PopularSongCard = ({ item, selectedSong, handleCardPress }) => {
         />
       </TouchableOpacity>
       <Text style={styles.companyName} numberOfLines={1}>
-        {item.title[0]}
+        {item.title}
       </Text>
 
       <View style={styles.infoContainer}>
         <Text style={styles.songName(selectedSong, item)} numberOfLines={1}>
-          {item.title[0]}
+          {item.title}
         </Text>
         <View style={styles.infoWrapper}>
           <Text style={styles.publisher(selectedSong, item)}>
-            {(item?.singer).map((singer) => singer + " ")} -
+            {item?.singer} -
           </Text>
           <Text style={styles.location}> {item.composer}</Text>
         </View>

@@ -5,14 +5,14 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import styles from "./recentsong.style";
 import { COLORS } from "../../../constants";
 import NearbySongCard from "../../common/cards/nearby/NearbySongCard";
-import useFetch from "../../../hook/useFetch";
+import useSong from "../../../hook/useSong";
 
 const Recentsong = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useFetch("search", {
-    query: "React Native developer",
-    num_pages: "1",
+  const { data, isLoading, error } = useSong("songs", {
+    category: "অসম্পূর্ণ গানের লিরিক",
   });
+  console.log(data);
 
   return (
     <View style={styles.container}>
@@ -32,8 +32,8 @@ const Recentsong = () => {
           data?.map((song) => (
             <NearbySongCard
               song={song}
-              key={`nearby-song-${song.job_id}`}
-              handleNavigate={() => router.push(`/song-details/${song.job_id}`)}
+              key={`nearby-song-${song._id}`}
+              handleNavigate={() => router.push(`/song-details/${song._id}`)}
             />
           ))
         )}

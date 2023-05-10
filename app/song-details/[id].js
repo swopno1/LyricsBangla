@@ -41,21 +41,18 @@ const SongDetails = () => {
   const displayTabContent = () => {
     switch (activeTab) {
       case "About":
-        return <SongAbout info={data.job_description ?? "No data provided"} />;
+        return <SongAbout info={data.title ?? "No data provided"} />;
         break;
       case "Qualification":
         return (
-          <Specifics
-            title="Qualification"
-            points={data.job_highlights?.Qualifications ?? ["N?/A"]}
-          />
+          <Specifics title="Qualification" points={data.composer ?? ["N?/A"]} />
         );
         break;
       case "Responsibilities":
         return (
           <Specifics
             title="Responsibilities"
-            points={data.job_highlights?.Responsibilities ?? ["N?/A"]}
+            points={data.category ?? ["N?/A"]}
           />
         );
         break;
@@ -99,10 +96,10 @@ const SongDetails = () => {
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
               <Company
-                companyLogo={data.employer_logo}
-                songTitle={data.job_title}
-                companyName={data.employer_name}
-                location={data.job_country}
+                companyLogo={data.image_url}
+                songTitle={data.title}
+                companyName={data.composer}
+                location={data.movie_name}
               />
 
               <SongTabs
@@ -116,10 +113,7 @@ const SongDetails = () => {
           )}
         </ScrollView>
         <SongFooter
-          url={
-            data[0]?.job_google_link ??
-            "https://careers.google.com/jobs/results"
-          }
+          url={data?.source_url ?? "https://careers.google.com/jobs/results"}
         />
       </>
     </SafeAreaView>
