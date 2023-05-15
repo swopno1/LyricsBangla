@@ -9,10 +9,7 @@ import useSong from "../../../hook/useSong";
 
 const Recentsong = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useSong("songs", {
-    category: "অসম্পূর্ণ গানের লিরিক",
-  });
-  console.log(data);
+  const { data, isLoading, error } = useSong("/songs");
 
   return (
     <View style={styles.container}>

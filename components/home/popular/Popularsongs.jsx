@@ -16,12 +16,12 @@ import useSong from "../../../hook/useSong";
 const Popularsongs = () => {
   const router = useRouter();
   // *Attention* Will need to add params for filtering popular song
-  const { data, isLoading, error } = useSong("songs");
+  const { data, isLoading, error } = useSong("/songs");
 
   const [selectedSong, setSelectedSong] = useState();
 
   const handleCardPress = (item) => {
-    router.push(`/song-details/${item._id}`);
+    router.push(`/details/${item._id}`);
     setSelectedSong(item._id);
   };
 

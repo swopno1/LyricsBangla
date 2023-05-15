@@ -6,9 +6,11 @@ const useSong = (endpoint) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const apiRoot = "http://localhost:4001"; //https://lyrics-api-orpin.vercel.app
+
   const options = {
     method: "GET",
-    url: `https://lyrics-api-orpin.vercel.app/${endpoint}`,
+    url: `${apiRoot}${endpoint}`,
     headers: {
       "content-type": "application/json",
     },
@@ -19,29 +21,15 @@ const useSong = (endpoint) => {
 
     try {
       const response = await axios.request(options);
-      console.log(response);
 
-      setData(response.data);
-      setIsLoading(false);
+      await setData(response.data);
+      await setIsLoading(false);
     } catch (error) {
-      setError(error);
-      console.log(error);
+      await setError(error);
+      await console.log(error);
     } finally {
-      setIsLoading(false);
+      await setIsLoading(false);
     }
-
-    // axios
-    //   .get(`https://lyrics-api-orpin.vercel.app/${endpoint}`, options)
-    //   .then((res) => {
-    //     setData(res);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     setError(err);
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
   };
 
   useEffect(() => {

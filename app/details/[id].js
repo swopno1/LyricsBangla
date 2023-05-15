@@ -16,18 +16,16 @@ import {
   ScreenHeaderBtn,
   Specifics,
 } from "../../components";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useSong from "../../hook/useSong";
 
-const tabs = ["About", "Qualification", "Responsibilities"];
+const tabs = ["Lyrics", "Qualification", "Responsibilities"];
 
 const SongDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
 
-  const { data, isLoading, error, refetch } = useSong(`songdata/${params.id}`);
-
-  console.log(data);
+  const { data, isLoading, error, refetch } = useSong(`/songs/${params.id}`);
 
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -40,7 +38,7 @@ const SongDetails = () => {
 
   const displayTabContent = () => {
     switch (activeTab) {
-      case "About":
+      case "Lyrics":
         return <SongAbout info={data.title ?? "No data provided"} />;
         break;
       case "Qualification":
@@ -58,6 +56,15 @@ const SongDetails = () => {
         break;
     }
   };
+
+  // Render loading state or error message if params.id is not available
+  if (!params.id) {
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+        <ActivityIndicator size="large" color={COLORS.primary} />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
