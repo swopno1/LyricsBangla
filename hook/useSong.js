@@ -6,7 +6,7 @@ const useSong = (endpoint) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const apiRoot = "http://localhost:4001"; //https://lyrics-api-orpin.vercel.app
+  const apiRoot = "https://lyrics-api-orpin.vercel.app"; //"http://localhost:4001"
 
   const options = {
     method: "GET",
@@ -22,13 +22,13 @@ const useSong = (endpoint) => {
     try {
       const response = await axios.request(options);
 
-      await setData(response.data);
-      await setIsLoading(false);
+      setData(response.data);
+      setIsLoading(false);
     } catch (error) {
-      await setError(error);
-      await console.log(error);
+      setError(error);
+      console.log(error);
     } finally {
-      await setIsLoading(false);
+      setIsLoading(false);
     }
   };
 

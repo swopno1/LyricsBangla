@@ -18,6 +18,7 @@ import {
 } from "../../components";
 import { useCallback, useEffect, useState } from "react";
 import useSong from "../../hook/useSong";
+import axios from "axios";
 
 const tabs = ["Lyrics", "Qualification", "Responsibilities"];
 
@@ -25,7 +26,34 @@ const SongDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
 
-  const { data, isLoading, error, refetch } = useSong(`/songs/${params.id}`);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await axios.get(
+        `http://localhost:4001/songs/${params.id}`
+      );
+
+      setData(response.data);
+    } catch (error) {
+      setError(error);
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (params.id) {
+      fetchData();
+    }
+  }, [params.id]);
+
+  // const { data, isLoading, error, refetch } = useSong(`/songs/${params.id}`);
 
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -40,12 +68,10 @@ const SongDetails = () => {
     switch (activeTab) {
       case "Lyrics":
         return <SongAbout info={data.title ?? "No data provided"} />;
-        break;
       case "Qualification":
         return (
           <Specifics title="Qualification" points={data.composer ?? ["N?/A"]} />
         );
-        break;
       case "Responsibilities":
         return (
           <Specifics
@@ -53,12 +79,11 @@ const SongDetails = () => {
             points={data.category ?? ["N?/A"]}
           />
         );
-        break;
     }
   };
 
   // Render loading state or error message if params.id is not available
-  if (!params.id) {
+  if (params.id === undefined || params.id === null) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
         <ActivityIndicator size="large" color={COLORS.primary} />
