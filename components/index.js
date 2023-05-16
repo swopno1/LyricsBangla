@@ -2,8 +2,8 @@ import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
 
 // home screen
 import Welcome from "./home/welcome/Welcome";
-import Recentsong from "./home/recent/Recentsong";
-import Popularsongs from "./home/popular/Popularsongs";
+import RecentSong from "./home/recent/RecentSong";
+import PopularSongs from "./home/popular/PopularSongs";
 
 // Song details screen
 import Song from "./songdetails/company/Song";
@@ -18,8 +18,8 @@ import RecentSongCard from "./common/cards/recent/RecentSongCard";
 export {
   ScreenHeaderBtn,
   Welcome,
-  Recentsong,
-  Popularsongs,
+  RecentSong,
+  PopularSongs,
   Song,
   SongTabs,
   SongAbout,

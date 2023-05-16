@@ -3,8 +3,8 @@ import { Stack, useRouter } from "expo-router";
 
 import { COLORS, icons, images, SIZES } from "../constants";
 import {
-  Recentsong,
-  Popularsongs,
+  RecentSong,
+  PopularSongs,
   ScreenHeaderBtn,
   Welcome,
 } from "../components";
@@ -40,8 +40,8 @@ const Home = () => {
               }
             }}
           />
-          <Popularsongs />
-          <Recentsong />
+          <PopularSongs />
+          <RecentSong />
         </View>
       </ScrollView>
     </SafeAreaView>

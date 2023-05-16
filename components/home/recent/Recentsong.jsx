@@ -7,9 +7,16 @@ import { COLORS } from "../../../constants";
 import RecentSongCard from "../../common/cards/recent/RecentSongCard";
 import useSong from "../../../hook/useSong";
 
-const Recentsong = () => {
+const RecentSong = () => {
   const router = useRouter();
   const { data, isLoading, error } = useSong("/songs");
+
+  const shuffledData = data.sort(() => 0.5 - Math.random());
+  const selectedData = shuffledData.slice(0, 10);
+
+  // const handleShowAll = () => {
+  //   router.push("/songs"); // Replace "/all-songs" with the desired route path
+  // };
 
   return (
     <View style={styles.container}>
@@ -26,7 +33,7 @@ const Recentsong = () => {
         ) : error ? (
           <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
-          data?.map((song) => (
+          selectedData?.map((song) => (
             <RecentSongCard
               song={song}
               key={`nearby-song-${song._id}`}
@@ -39,4 +46,4 @@ const Recentsong = () => {
   );
 };
 
-export default Recentsong;
+export default RecentSong;

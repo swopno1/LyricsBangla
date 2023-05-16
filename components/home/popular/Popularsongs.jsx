@@ -13,10 +13,13 @@ import { COLORS, SIZES } from "../../../constants";
 import PopularSongCard from "../../common/cards/popular/PopularSongCard";
 import useSong from "../../../hook/useSong";
 
-const Popularsongs = () => {
+const PopularSongs = () => {
   const router = useRouter();
   // *Attention* Will need to add params for filtering popular song
   const { data, isLoading, error } = useSong("/songs");
+
+  const shuffledData = data.sort(() => 0.5 - Math.random());
+  const selectedData = shuffledData.slice(0, 10);
 
   const [selectedSong, setSelectedSong] = useState();
 
@@ -41,7 +44,7 @@ const Popularsongs = () => {
           <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
           <FlatList
-            data={data}
+            data={selectedData}
             renderItem={({ item }) => (
               <PopularSongCard
                 item={item}
@@ -59,4 +62,4 @@ const Popularsongs = () => {
   );
 };
 
-export default Popularsongs;
+export default PopularSongs;
