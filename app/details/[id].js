@@ -52,14 +52,12 @@ const SongDetails = () => {
     }
   }, [params.id]);
 
-  // const { data, isLoading, error, refetch } = useSong(`/songs/${params.id}`);
-
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    refetch();
+    fetchData();
     setRefreshing(false);
   }, []);
 

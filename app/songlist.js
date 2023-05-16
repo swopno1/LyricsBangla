@@ -58,7 +58,7 @@ const songlist = () => {
           headerTitle: "",
         }}
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <View>
         <FlatList
           data={paginatedItems}
           renderItem={({ item }) => (
@@ -105,7 +105,7 @@ const songlist = () => {
             </View>
           )}
         />
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

@@ -1,9 +1,15 @@
 import React from "react";
 import { useRouter, useNavigation } from "expo-router";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  FlatList,
+} from "react-native";
 
 import styles from "./recentsong.style";
-import { COLORS } from "../../../constants";
+import { COLORS, SIZES } from "../../../constants";
 import RecentSongCard from "../../common/cards/recent/RecentSongCard";
 import useSong from "../../../hook/useSong";
 
@@ -36,13 +42,18 @@ const RecentSong = () => {
         ) : error ? (
           <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
-          selectedData?.map((song) => (
-            <RecentSongCard
-              song={song}
-              key={`nearby-song-${song._id}`}
-              handleNavigate={() => router.push(`/details/${song._id}`)}
-            />
-          ))
+          <FlatList
+            data={selectedData}
+            renderItem={({ song }) => (
+              <RecentSongCard
+                song={song}
+                key={`nearby-song-${song._id}`}
+                handleNavigate={() => router.push(`/details/${song._id}`)}
+              />
+            )}
+            keyExtractor={(item) => item._id}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
+          />
         )}
       </View>
     </View>
