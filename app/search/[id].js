@@ -10,7 +10,7 @@ import { Stack, useRouter, useSearchParams } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
 import axios from "axios";
 
-import { ScreenHeaderBtn, NearbysongCard } from "../../components";
+import { ScreenHeaderBtn, RecentSongCard } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
 
@@ -21,17 +21,29 @@ const SongSearch = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [searchLoader, setSearchLoader] = useState(false);
   const [searchError, setSearchError] = useState(null);
-  const [page, setPage] = useState(1);
+
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 20;
+
+  // Calculate the start and end indexes for the current page
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedItems = searchResult.slice(startIndex, endIndex);
+
+  // Pagination
 
   const handleSearch = async () => {
     setSearchLoader(true);
     setSearchResult([]);
 
     try {
+      // https://lyrics-api-orpin.vercel.app/search?category=পদাবলী-কীর্তন
       const response = await axios.get(
-        `https://lyrics-api-orpin.vercel.app/search/${params.id}`
+        `https://lyrics-api-orpin.vercel.app/search?category=${params.id}`
       );
-      setSearchResult(response.data.data);
+
+      setSearchResult(response.data);
     } catch (error) {
       setSearchError(error);
       console.log(error);
@@ -41,12 +53,10 @@ const SongSearch = () => {
   };
 
   const handlePagination = (direction) => {
-    if (direction === "left" && page > 1) {
-      setPage(page - 1);
-      handleSearch();
+    if (direction === "left" && currentPage > 0) {
+      setCurrentPage(currentPage - 1);
     } else if (direction === "right") {
-      setPage(page + 1);
-      handleSearch();
+      setCurrentPage(currentPage + 1);
     }
   };
 
@@ -67,26 +77,26 @@ const SongSearch = () => {
               handlePress={() => router.back()}
             />
           ),
-          headerTitle: "",
+          headerTitle: params.id,
         }}
       />
 
+      {/* <View style={styles.container}>
+        <Text style={styles.searchTitle}>{params.id}</Text>
+      </View> */}
+
       <FlatList
-        data={searchResult}
+        data={paginatedItems}
         renderItem={({ item }) => (
           <RecentSongCard
             song={item}
-            handleNavigate={() => router.push(`/song-details/${item._id}`)}
+            handleNavigate={() => router.push(`/details/${item._id}`)}
           />
         )}
         keyExtractor={(item) => item._id}
         contentContainerStyle={{ padding: SIZES.medium, rowGap: SIZES.medium }}
         ListHeaderComponent={() => (
           <>
-            <View style={styles.container}>
-              <Text style={styles.searchTitle}>{params.id}</Text>
-              <Text style={styles.noOfSearchedSongs}>Song Opportunities</Text>
-            </View>
             <View style={styles.loaderContainer}>
               {searchLoader ? (
                 <ActivityIndicator size="large" color={COLORS.primary} />
@@ -109,7 +119,7 @@ const SongSearch = () => {
               />
             </TouchableOpacity>
             <View style={styles.paginationTextBox}>
-              <Text style={styles.paginationText}>{page}</Text>
+              <Text style={styles.paginationText}>{currentPage + 1}</Text>
             </View>
             <TouchableOpacity
               style={styles.paginationButton}
