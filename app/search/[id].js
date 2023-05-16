@@ -28,19 +28,9 @@ const SongSearch = () => {
     setSearchResult([]);
 
     try {
-      const options = {
-        method: "GET",
-        url: `https://lyrics-api-orpin.vercel.app/songs/${params.id}`,
-        headers: {
-          "content-type": "application/json",
-        },
-      };
-
-      // "X-RapidAPI-Key":
-      //       "0110da4046mshe21086578ab5049p1ff8ddjsnad7ba99e3746",
-      //     "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-
-      const response = await axios.request(options);
+      const response = await axios.get(
+        `https://lyrics-api-orpin.vercel.app/search/${params.id}`
+      );
       setSearchResult(response.data.data);
     } catch (error) {
       setSearchError(error);

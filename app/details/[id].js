@@ -17,7 +17,7 @@ import {
   Specifics,
 } from "../../components";
 import { useCallback, useEffect, useState } from "react";
-import useSong from "../../hook/useSong";
+// import useSong from "../../hook/useSong";
 import axios from "axios";
 
 const SongDetails = () => {
