@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRouter } from "expo-router";
+import { useRouter, useNavigation } from "expo-router";
 import {
   View,
   Text,
@@ -15,6 +15,8 @@ import useSong from "../../../hook/useSong";
 
 const PopularSongs = () => {
   const router = useRouter();
+
+  const navigation = useNavigation();
   // *Attention* Will need to add params for filtering popular song
   const { data, isLoading, error } = useSong("/songs");
 
@@ -32,7 +34,13 @@ const PopularSongs = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>জনপ্রিয় গান</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("songlist", {
+              data: JSON.stringify(data),
+            })
+          }
+        >
           <Text style={styles.headerBtn}>Show all</Text>
         </TouchableOpacity>
       </View>
