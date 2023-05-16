@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./recentsong.style";
 import { COLORS } from "../../../constants";
-import NearbySongCard from "../../common/cards/nearby/NearbySongCard";
+import RecentSongCard from "../../common/cards/nearby/RecentSongCard";
 import useSong from "../../../hook/useSong";
 
 const Recentsong = () => {
@@ -27,10 +27,10 @@ const Recentsong = () => {
           <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
           data?.map((song) => (
-            <NearbySongCard
+            <RecentSongCard
               song={song}
               key={`nearby-song-${song._id}`}
-              handleNavigate={() => router.push(`/song-details/${song._id}`)}
+              handleNavigate={() => router.push(`/details/${song._id}`)}
             />
           ))
         )}

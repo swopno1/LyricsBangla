@@ -34,7 +34,7 @@ const useSong = (endpoint) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [endpoint]);
 
   const reFetch = () => {
     setIsLoading(true);

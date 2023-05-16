@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
-import styles from "./nearbysongcard.style";
+import styles from "./recentsongcard.style";
 import { checkImageURL } from "../../../../utils";
 
-const NearbySongCard = ({ song, handleNavigate }) => {
+const RecentSongCard = ({ song, handleNavigate }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={handleNavigate}>
       <TouchableOpacity style={styles.logoContainer}>
@@ -29,4 +29,4 @@ const NearbySongCard = ({ song, handleNavigate }) => {
   );
 };
 
-export default NearbySongCard;
+export default RecentSongCard;

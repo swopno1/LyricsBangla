@@ -84,7 +84,7 @@ const SongSearch = () => {
       <FlatList
         data={searchResult}
         renderItem={({ item }) => (
-          <NearbySongCard
+          <RecentSongCard
             song={item}
             handleNavigate={() => router.push(`/song-details/${item._id}`)}
           />

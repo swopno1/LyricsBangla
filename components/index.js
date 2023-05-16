@@ -13,7 +13,7 @@ import { default as SongFooter } from "./songdetails/footer/Footer";
 import Specifics from "./songdetails/specifics/Specifics";
 
 // common
-import RecentSongCard from "./common/cards/nearby/NearbySongCard";
+import RecentSongCard from "./common/cards/nearby/RecentSongCard";
 
 export {
   ScreenHeaderBtn,

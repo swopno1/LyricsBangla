@@ -35,7 +35,7 @@ const SongDetails = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:4001/songs/${params.id}`
+        `https://lyrics-api-orpin.vercel.app/songs/${params.id}`
       );
 
       setData(response.data);
@@ -83,7 +83,7 @@ const SongDetails = () => {
   };
 
   // Render loading state or error message if params.id is not available
-  if (params.id === undefined || params.id === null) {
+  if (!params.id) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
         <ActivityIndicator size="large" color={COLORS.primary} />
