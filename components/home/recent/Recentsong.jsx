@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./recentsong.style";
 import { COLORS } from "../../../constants";
-import RecentSongCard from "../../common/cards/nearby/RecentSongCard";
+import RecentSongCard from "../../common/cards/recent/RecentSongCard";
 import useSong from "../../../hook/useSong";
 
 const Recentsong = () => {

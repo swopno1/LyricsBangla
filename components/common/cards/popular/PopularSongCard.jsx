@@ -20,7 +20,7 @@ const PopularSongCard = ({ item, selectedSong, handleCardPress }) => {
           style={styles.logoImage}
         />
       </TouchableOpacity>
-      <Text style={styles.companyName} numberOfLines={1}>
+      <Text style={styles.songName} numberOfLines={1}>
         {item.title}
       </Text>
 

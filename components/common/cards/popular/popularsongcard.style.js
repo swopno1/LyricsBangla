@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     width: "70%",
     height: "70%",
   },
-  companyName: {
+  songName: {
     fontSize: SIZES.medium,
     fontFamily: FONT.regular,
     color: "#B3AEC6",

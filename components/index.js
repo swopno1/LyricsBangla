@@ -6,21 +6,21 @@ import Recentsong from "./home/recent/Recentsong";
 import Popularsongs from "./home/popular/Popularsongs";
 
 // Song details screen
-import Company from "./songdetails/company/Company";
+import Song from "./songdetails/company/Song";
 import { default as SongTabs } from "./songdetails/tabs/Tabs";
 import { default as SongAbout } from "./songdetails/about/About";
 import { default as SongFooter } from "./songdetails/footer/Footer";
 import Specifics from "./songdetails/specifics/Specifics";
 
 // common
-import RecentSongCard from "./common/cards/nearby/RecentSongCard";
+import RecentSongCard from "./common/cards/recent/RecentSongCard";
 
 export {
   ScreenHeaderBtn,
   Welcome,
   Recentsong,
   Popularsongs,
-  Company,
+  Song,
   SongTabs,
   SongAbout,
   SongFooter,

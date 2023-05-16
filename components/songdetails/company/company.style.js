@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  companyName: {
+  songName: {
     fontSize: SIZES.medium - 2,
     color: COLORS.primary,
     fontFamily: FONT.medium,

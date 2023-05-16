@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { COLORS, SIZES, icons } from "../../constants";
 import {
-  Company,
+  Song,
   SongAbout,
   SongFooter,
   SongTabs,
@@ -20,9 +20,8 @@ import { useCallback, useEffect, useState } from "react";
 import useSong from "../../hook/useSong";
 import axios from "axios";
 
-const tabs = ["Lyrics", "Qualification", "Responsibilities"];
-
 const SongDetails = () => {
+  const tabs = ["Lyrics: গানের কথা", "Details: অন্যান্ন তথ্য"];
   const params = useSearchParams();
   const router = useRouter();
 
@@ -66,18 +65,11 @@ const SongDetails = () => {
 
   const displayTabContent = () => {
     switch (activeTab) {
-      case "Lyrics":
-        return <SongAbout info={data.title ?? "No data provided"} />;
-      case "Qualification":
+      case "Lyrics: গানের কথা":
+        return <SongAbout info={data ?? "No data provided"} />;
+      case "Details: অন্যান্ন তথ্য":
         return (
-          <Specifics title="Qualification" points={data.composer ?? ["N?/A"]} />
-        );
-      case "Responsibilities":
-        return (
-          <Specifics
-            title="Responsibilities"
-            points={data.category ?? ["N?/A"]}
-          />
+          <Specifics title="Details: অন্যান্ন তথ্য" data={data ?? ["N?/A"]} />
         );
     }
   };
@@ -126,11 +118,18 @@ const SongDetails = () => {
           ) : data.length === 0 ? (
             <Text>No data!</Text>
           ) : (
-            <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
-              <Company
-                companyLogo={data.image_url}
+            <View
+              style={{
+                padding: SIZES.medium,
+                paddingBottom: 100,
+                flex: 1,
+                justifyContent: "space-between",
+              }}
+            >
+              <Song
+                songLogo={data.image_url}
                 songTitle={data.title}
-                companyName={data.composer}
+                songName={data.composer}
                 location={data.movie_name}
               />
 

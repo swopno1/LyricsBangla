@@ -7,7 +7,7 @@ import { SIZES } from "../../../constants";
 function TabButton({ name, activeTab, onHandleSearchType }) {
   return (
     <TouchableOpacity
-      style={styles.btn(name, activeTab)}
+      style={[styles.btn(name, activeTab), { flex: 1 }]}
       onPress={onHandleSearchType}
     >
       <Text style={styles.btnText(name, activeTab)}>{name}</Text>
@@ -29,7 +29,7 @@ const Tabs = ({ tabs, activeTab, setActiveTab }) => {
             onHandleSearchType={() => setActiveTab(item)}
           />
         )}
-        contentContainerStyle={{ columnGap: SIZES.small / 2 }}
+        contentContainerStyle={{ columnGap: SIZES.small / 2, flex: 1 }}
         keyExtractor={(item) => item}
       />
     </View>
