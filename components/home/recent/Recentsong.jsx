@@ -20,7 +20,7 @@ const RecentSong = () => {
 
   const shuffledData = data.sort(() => 0.5 - Math.random());
   const selectedData = shuffledData.slice(0, 10);
-  console.log(selectedData);
+  // console.log(selectedData);
 
   return (
     <View style={styles.container}>

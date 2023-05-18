@@ -8,7 +8,7 @@ import {
 import { Stack, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSong } from "../redux/songSlice";
+import { fetchSong, setRandomData } from "../redux/songSlice";
 
 import { COLORS, icons, SIZES } from "../constants";
 import {
@@ -22,11 +22,19 @@ const Home = () => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
-  const { data, isLoading, error } = useSelector((state) => state.song);
+  const { data, randomData, isLoading, error } = useSelector(
+    (state) => state.song
+  );
 
   useEffect(() => {
-    dispatch(fetchSong());
-  }, []);
+    if (!data) {
+      dispatch(fetchSong());
+    }
+  }, [dispatch, data]);
+
+  useEffect(() => {
+    dispatch(setRandomData(randomData));
+  }, [dispatch, randomData]);
 
   console.log(data);
 
@@ -57,20 +65,16 @@ const Home = () => {
             }}
           />
 
-          {isLoading ? (
+          {isLoading && (
             <ActivityIndicator
               size="large"
               color={COLORS.primary}
               style={{ paddingTop: 20 }}
             />
-          ) : error ? (
-            <Text>Something went wrong! Error: {error}</Text>
-          ) : (
-            <>
-              <PopularSongs />
-              <RecentSong />
-            </>
           )}
+          {error && <Text>Something went wrong! Error: {error}</Text>}
+          {randomData && <PopularSongs />}
+          <RecentSong />
         </View>
       </ScrollView>
     </SafeAreaView>

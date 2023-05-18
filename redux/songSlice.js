@@ -20,10 +20,15 @@ const songSlice = createSlice({
   name: "song",
   initialState: {
     data: null,
+    randomData: null,
     isLoading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setRandomData: (state, action) => {
+      state.randomData = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchSong.pending, (state) => {
@@ -33,6 +38,9 @@ const songSlice = createSlice({
       .addCase(fetchSong.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
+        // Set random data from the fetched response
+        const randomData = getRandomItems(action.payload, 10); // Change 10 to the desired number of random items
+        state.randomData = randomData;
       })
       .addCase(fetchSong.rejected, (state, action) => {
         state.isLoading = false;
@@ -41,4 +49,11 @@ const songSlice = createSlice({
   },
 });
 
+// Utility function to get random items from an array
+const getRandomItems = (array, count) => {
+  const shuffled = array.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
+export const { setRandomData } = songSlice.actions;
 export default songSlice.reducer;

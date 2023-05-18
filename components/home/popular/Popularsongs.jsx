@@ -1,27 +1,17 @@
 import { useState } from "react";
 import { useRouter, useNavigation } from "expo-router";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 
 import styles from "./popularsongs.style";
-import { COLORS, SIZES } from "../../../constants";
+import { SIZES } from "../../../constants";
 import PopularSongCard from "../../common/cards/popular/PopularSongCard";
-import useSong from "../../../hook/useSong";
+import { useSelector } from "react-redux";
 
 const PopularSongs = () => {
+  const randomData = useSelector((state) => state.song.randomData);
+  console.log("RandomData", randomData);
   const router = useRouter();
-
   const navigation = useNavigation();
-  // *Attention* Will need to add params for filtering popular song
-  const { data, isLoading, error } = useSong("/songs");
-
-  const shuffledData = data.sort(() => 0.5 - Math.random());
-  const selectedData = shuffledData.slice(0, 10);
 
   const [selectedSong, setSelectedSong] = useState();
 
@@ -46,25 +36,19 @@ const PopularSongs = () => {
       </View>
 
       <View style={styles.cardsContainer}>
-        {isLoading ? (
-          <ActivityIndicator size="large" color={COLORS.primary} />
-        ) : error ? (
-          <Text>কিছু একটা সমস্যা হয়েছে!</Text>
-        ) : (
-          <FlatList
-            data={selectedData}
-            renderItem={({ item }) => (
-              <PopularSongCard
-                item={item}
-                selectedSong={selectedSong}
-                handleCardPress={handleCardPress}
-              />
-            )}
-            keyExtractor={(item) => item._id}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
-            horizontal
-          />
-        )}
+        <FlatList
+          data={randomData}
+          renderItem={({ item }) => (
+            <PopularSongCard
+              item={item}
+              selectedSong={selectedSong}
+              handleCardPress={handleCardPress}
+            />
+          )}
+          keyExtractor={(item) => item._id}
+          contentContainerStyle={{ columnGap: SIZES.medium }}
+          horizontal
+        />
       </View>
     </View>
   );
