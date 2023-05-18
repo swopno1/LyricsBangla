@@ -4,7 +4,6 @@ import styles from "./recentsongcard.style";
 import { checkImageURL } from "../../../../utils";
 
 const RecentSongCard = ({ song, handleNavigate }) => {
-  // console.log(song);
   return (
     <TouchableOpacity style={styles.container} onPress={handleNavigate}>
       <TouchableOpacity style={styles.logoContainer}>

@@ -8,8 +8,8 @@ import PopularSongCard from "../../common/cards/popular/PopularSongCard";
 import { useSelector } from "react-redux";
 
 const PopularSongs = () => {
-  const randomData = useSelector((state) => state.song.randomData);
-  console.log("RandomData", randomData);
+  const popularSong = useSelector((state) => state.song.popularSong);
+
   const router = useRouter();
   const navigation = useNavigation();
 
@@ -37,7 +37,7 @@ const PopularSongs = () => {
 
       <View style={styles.cardsContainer}>
         <FlatList
-          data={randomData}
+          data={popularSong}
           renderItem={({ item }) => (
             <PopularSongCard
               item={item}

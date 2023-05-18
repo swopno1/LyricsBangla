@@ -8,7 +8,7 @@ import {
 import { Stack, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSong, setRandomData } from "../redux/songSlice";
+import { fetchSong, setLatestSong, setPopularSong } from "../redux/songSlice";
 
 import { COLORS, icons, SIZES } from "../constants";
 import {
@@ -22,7 +22,7 @@ const Home = () => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
-  const { data, randomData, isLoading, error } = useSelector(
+  const { data, popularSong, latestSong, isLoading, error } = useSelector(
     (state) => state.song
   );
 
@@ -32,11 +32,13 @@ const Home = () => {
     }
   }, [dispatch, data]);
 
-  useEffect(() => {
-    dispatch(setRandomData(randomData));
-  }, [dispatch, randomData]);
+  // useEffect(() => {
+  //   dispatch(setPopularSong(popularSong));
+  // }, [dispatch, popularSong]);
 
-  console.log(data);
+  // useEffect(() => {
+  //   dispatch(setLatestSong(latestSong));
+  // }, [dispatch, latestSong]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -73,8 +75,8 @@ const Home = () => {
             />
           )}
           {error && <Text>Something went wrong! Error: {error}</Text>}
-          {randomData && <PopularSongs />}
-          <RecentSong />
+          {popularSong && <PopularSongs />}
+          {latestSong && <RecentSong />}
         </View>
       </ScrollView>
     </SafeAreaView>
