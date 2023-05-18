@@ -1,22 +1,34 @@
-import { View, ScrollView, SafeAreaView, Text } from "react-native";
+import {
+  View,
+  ScrollView,
+  SafeAreaView,
+  ActivityIndicator,
+  Text,
+} from "react-native";
 import { Stack, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSong } from "../redux/songSlice";
 
-import { COLORS, icons, images, SIZES } from "../constants";
+import { COLORS, icons, SIZES } from "../constants";
 import {
   RecentSong,
   PopularSongs,
   ScreenHeaderBtn,
   Welcome,
 } from "../components";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 
 const Home = () => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const { count } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+  const { data, isLoading, error } = useSelector((state) => state.song);
 
-  console.log(count);
+  useEffect(() => {
+    dispatch(fetchSong());
+  }, []);
+
+  console.log(data);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -44,11 +56,21 @@ const Home = () => {
               }
             }}
           />
-          <View>
-            <Text>Redux Count: {count}</Text>
-          </View>
-          <PopularSongs />
-          <RecentSong />
+
+          {isLoading ? (
+            <ActivityIndicator
+              size="large"
+              color={COLORS.primary}
+              style={{ paddingTop: 20 }}
+            />
+          ) : error ? (
+            <Text>Something went wrong! Error: {error}</Text>
+          ) : (
+            <>
+              <PopularSongs />
+              <RecentSong />
+            </>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
