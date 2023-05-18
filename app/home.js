@@ -8,7 +8,7 @@ import {
 import { Stack, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSong, setLatestSong, setPopularSong } from "../redux/songSlice";
+import { fetchSong } from "../redux/songSlice";
 
 import { COLORS, icons, SIZES } from "../constants";
 import {

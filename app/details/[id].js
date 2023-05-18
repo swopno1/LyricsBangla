@@ -7,6 +7,9 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from "react-native";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { COLORS, SIZES, icons } from "../../constants";
 import {
   Song,
@@ -16,58 +19,45 @@ import {
   ScreenHeaderBtn,
   Specifics,
 } from "../../components";
-import { useCallback, useEffect, useState } from "react";
-// import useSong from "../../hook/useSong";
-import axios from "axios";
+import { fetchSong } from "../../redux/songSlice";
 
 const SongDetails = () => {
   const tabs = ["Lyrics: গানের কথা", "Details: অন্যান্ন তথ্য"];
   const params = useSearchParams();
   const router = useRouter();
 
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [song, setSong] = useState(null);
 
-  const fetchData = async () => {
-    setIsLoading(true);
-
-    try {
-      const response = await axios.get(
-        `https://lyrics-api-orpin.vercel.app/songs/${params.id}`
-      );
-
-      setData(response.data);
-    } catch (error) {
-      setError(error);
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const dispatch = useDispatch();
+  const { data, isLoading, error } = useSelector((state) => state.song);
 
   useEffect(() => {
-    if (params.id) {
-      fetchData();
+    if (!data) {
+      dispatch(fetchSong());
     }
-  }, [params.id]);
+  }, [dispatch, data]);
+
+  useEffect(() => {
+    if (params.id && data) {
+      const filteredSong = data.filter((item) => item._id === params.id);
+      setSong(data[0]);
+    }
+  }, [params.id, data]);
 
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    fetchData();
-    setRefreshing(false);
+    console.log("Page refreshed");
   }, []);
 
   const displayTabContent = () => {
     switch (activeTab) {
       case "Lyrics: গানের কথা":
-        return <SongAbout info={data ?? "No data provided"} />;
+        return <SongAbout info={song ?? "No data provided"} />;
       case "Details: অন্যান্ন তথ্য":
         return (
-          <Specifics title="Details: অন্যান্ন তথ্য" data={data ?? ["N?/A"]} />
+          <Specifics title="Details: অন্যান্ন তথ্য" data={song ?? ["N?/A"]} />
         );
     }
   };
@@ -109,13 +99,12 @@ const SongDetails = () => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          {isLoading ? (
+          {isLoading && (
             <ActivityIndicator size="large" color={COLORS.primary} />
-          ) : error ? (
-            <Text>Something went wrong!</Text>
-          ) : data.length === 0 ? (
-            <Text>No data!</Text>
-          ) : (
+          )}
+          {error && <Text>Something went wrong!</Text>}
+          {!song && <Text>No data!</Text>}
+          {song && (
             <View
               style={{
                 padding: SIZES.medium,
@@ -125,10 +114,10 @@ const SongDetails = () => {
               }}
             >
               <Song
-                songLogo={data.image_url}
-                songTitle={data.title}
-                songName={data.composer}
-                location={data.movie_name}
+                songLogo={song.image_url}
+                songTitle={song.title}
+                songName={song.composer}
+                location={song.movie_name}
               />
 
               <SongTabs
@@ -142,7 +131,7 @@ const SongDetails = () => {
           )}
         </ScrollView>
         <SongFooter
-          url={data?.source_url ?? "https://careers.google.com/jobs/results"}
+          url={song?.source_url ?? "https://careers.google.com/jobs/results"}
         />
       </>
     </SafeAreaView>
