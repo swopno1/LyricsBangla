@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  Image,
-  TouchableOpacity,
-  View,
-  ScrollView,
-} from "react-native";
+import { FlatList, Image, TouchableOpacity, View } from "react-native";
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
 

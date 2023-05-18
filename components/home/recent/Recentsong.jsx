@@ -20,6 +20,7 @@ const RecentSong = () => {
 
   const shuffledData = data.sort(() => 0.5 - Math.random());
   const selectedData = shuffledData.slice(0, 10);
+  console.log(selectedData);
 
   return (
     <View style={styles.container}>
@@ -42,18 +43,20 @@ const RecentSong = () => {
         ) : error ? (
           <Text>কিছু একটা সমস্যা হয়েছে!</Text>
         ) : (
-          <FlatList
-            data={selectedData}
-            renderItem={({ song }) => (
-              <RecentSongCard
-                song={song}
-                key={`nearby-song-${song._id}`}
-                handleNavigate={() => router.push(`/details/${song._id}`)}
-              />
-            )}
-            keyExtractor={(item) => item._id}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
-          />
+          selectedData && (
+            <FlatList
+              data={selectedData}
+              renderItem={({ song }) => (
+                <RecentSongCard
+                  song={song}
+                  key={`recent-song-${song?._id}`}
+                  handleNavigate={() => router.push(`/details/${song?._id}`)}
+                />
+              )}
+              keyExtractor={(item) => item._id}
+              contentContainerStyle={{ columnGap: SIZES.medium }}
+            />
+          )
         )}
       </View>
     </View>
