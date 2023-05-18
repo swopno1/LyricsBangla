@@ -8,6 +8,9 @@ import { COLORS, icons, SIZES } from "../constants";
 import styles from "../styles/search";
 
 const songlist = () => {
+  // Will change this route params data
+  // Will use state data and filter according to the params category
+
   const params = useSearchParams();
   const router = useRouter();
   const [data, setData] = useState([]);

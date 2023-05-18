@@ -66,7 +66,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
               style={styles.tab(activeSongType, item)}
               onPress={() => {
                 setActiveSongType(item);
-                router.push(`/search/${item}`);
+                router.push(`/category/${item}`);
               }}
             >
               <Text style={styles.tabText(activeSongType, item)}>{item}</Text>
