@@ -1,15 +1,9 @@
 import React from "react";
 import { useRouter, useNavigation } from "expo-router";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ActivityIndicator,
-  FlatList,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 
 import styles from "./recentsong.style";
-import { COLORS, SIZES } from "../../../constants";
+import { SIZES } from "../../../constants";
 import RecentSongCard from "../../common/cards/recent/RecentSongCard";
 import { useSelector } from "react-redux";
 
@@ -34,18 +28,20 @@ const RecentSong = () => {
       </View>
 
       <View style={styles.cardsContainer}>
-        <FlatList
-          data={latestSong}
-          renderItem={({ song }) => (
-            <RecentSongCard
-              song={song}
-              key={`recent-song-${song?._id}`}
-              handleNavigate={() => router.push(`/details/${song?._id}`)}
-            />
-          )}
-          keyExtractor={(item) => item._id}
-          contentContainerStyle={{ columnGap: SIZES.medium }}
-        />
+        {latestSong && (
+          <FlatList
+            data={latestSong}
+            renderItem={({ item }) => (
+              <RecentSongCard
+                song={item}
+                key={`recent-song-${item?._id}`}
+                handleNavigate={() => router.push(`/details/${item?._id}`)}
+              />
+            )}
+            keyExtractor={(item) => item._id}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
+          />
+        )}
       </View>
     </View>
   );
