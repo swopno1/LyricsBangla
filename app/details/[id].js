@@ -35,14 +35,13 @@ const SongDetails = () => {
     if (!data) {
       dispatch(fetchSong());
     }
-  }, [dispatch, data]);
-
-  useEffect(() => {
-    if (params.id && data) {
+    if (data) {
       const filteredSong = data.filter((item) => item._id === params.id);
-      setSong(data[0]);
+      setSong(filteredSong[0]);
     }
-  }, [params.id, data]);
+  }, [dispatch, data, params.id]);
+
+  console.log(song);
 
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -54,7 +53,7 @@ const SongDetails = () => {
   const displayTabContent = () => {
     switch (activeTab) {
       case "Lyrics: গানের কথা":
-        return <SongAbout info={song ?? "No data provided"} />;
+        return <SongAbout info={song ?? "কোন তথ্য পাওয়া যায় নি!"} />;
       case "Details: অন্যান্ন তথ্য":
         return (
           <Specifics title="Details: অন্যান্ন তথ্য" data={song ?? ["N?/A"]} />
@@ -102,8 +101,8 @@ const SongDetails = () => {
           {isLoading && (
             <ActivityIndicator size="large" color={COLORS.primary} />
           )}
-          {error && <Text>Something went wrong!</Text>}
-          {!song && <Text>No data!</Text>}
+          {error && <Text>কোন একটা সমস্যা হয়েছে, আবার চেষ্টা করুন!</Text>}
+          {/* {!song && <Text>গান পাওয়া যায় নি!</Text>} */}
           {song && (
             <View
               style={{

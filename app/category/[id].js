@@ -1,28 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
 
 import { ScreenHeaderBtn, RecentSongCard } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSong } from "../../redux/songSlice";
 
 const SongSearch = () => {
   const params = useSearchParams();
   const router = useRouter();
 
+  const dispatch = useDispatch();
   const [searchResult, setSearchResult] = useState(null);
-  const songData = useSelector((state) => state.song.data);
+  const { data, isLoading, error } = useSelector((state) => state.song);
 
   useEffect(() => {
-    if (songData) {
-      const filteredSong = songData.filter(
-        (item) => item.category === params.id
-      );
+    if (!data) {
+      dispatch(fetchSong());
+    }
+    if (data) {
+      const filteredSong = data.filter((item) => item.category === params.id);
       setSearchResult(filteredSong);
     }
-  }, [songData, params.id]);
+  }, [data, params.id, dispatch]);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -65,6 +74,12 @@ const SongSearch = () => {
       {/* <View style={styles.container}>
         <Text style={styles.searchTitle}>{params.id}</Text>
       </View> */}
+
+      {isLoading && <ActivityIndicator size="large" color={COLORS.primary} />}
+      {error && <Text>কোন একটা সমস্যা হয়েছে, আবার চেষ্টা করুন!</Text>}
+      {paginatedItems.length === 0 && (
+        <Text style={{ padding: SIZES.medium }}>কোন গান পাওয়া যায় নি!</Text>
+      )}
 
       <FlatList
         data={paginatedItems}
