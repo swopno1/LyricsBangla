@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Stack, useRouter, useGlobalSearchParams } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
 
@@ -7,6 +13,7 @@ import { ScreenHeaderBtn, RecentSongCard } from "../components";
 import { COLORS, icons, SIZES } from "../constants";
 import styles from "../styles/search";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchSong } from "../redux/songSlice";
 
 const songlist = () => {
   const params = useGlobalSearchParams();
@@ -59,18 +66,27 @@ const songlist = () => {
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
+
           headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
-          ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.heart} dimension="100%" />
+            <ScreenHeaderBtn
+              iconUrl={icons.heart}
+              dimension="70%"
+              handlePress="rateMyApp"
+            />
           ),
           headerTitle:
             params.data_type === "popular-song"
-              ? "Popular Song"
+              ? "জনপ্রিয় গান"
               : params.data_type === "recent-song"
-              ? "Recent Song"
+              ? "নতুন গান"
               : "",
+          headerRight: () => (
+            <ScreenHeaderBtn
+              iconUrl={icons.menu}
+              dimension="70%"
+              handlePress="toggleMenu"
+            />
+          ),
         }}
       />
       <View>

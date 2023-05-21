@@ -57,14 +57,17 @@ const ScreenHeaderBtn = ({ iconUrl, dimension, handlePress }) => {
               padding: 20,
             }}
           >
+            <MenuItem Text="Home - হোম" Route="/home" />
             <MenuItem
-              Text="Home - হোম"
-              Route="/details/645a95d11942d4a74c1f1f03"
+              Text="সব জনপ্রিয় গান"
+              Route="/songlist?data_type=popular-song"
             />
-            <MenuItem Text="সব জনপ্রিয় গান" Route="/home" />
-            <MenuItem Text="সব নতুন গান" Route="/home" />
-            <MenuItem Text="আমাদের সম্পর্কে" Route="/home" />
-            <MenuItem Text="Contact Us" Route="/home" />
+            <MenuItem
+              Text="সব নতুন গান"
+              Route="/songlist?data_type=recent-song"
+            />
+            <MenuItem Text="আমাদের সম্পর্কে" Route="/aboutus" />
+            <MenuItem Text="Contact Us" Route="/contactus" />
           </View>
         </TouchableWithoutFeedback>
       </Modal>

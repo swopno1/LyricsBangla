@@ -77,9 +77,9 @@ const SongDetails = () => {
           headerBackVisible: false,
           headerLeft: () => (
             <ScreenHeaderBtn
-              iconUrl={icons.left}
-              dimension="60%"
-              handlePress={() => router.back()}
+              iconUrl={icons.menu}
+              dimension="70%"
+              handlePress="toggleMenu"
             />
           ),
           headerRight: () => (
