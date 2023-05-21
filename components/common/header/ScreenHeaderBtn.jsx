@@ -66,8 +66,8 @@ const ScreenHeaderBtn = ({ iconUrl, dimension, handlePress }) => {
               Text="সব নতুন গান"
               Route="/songlist?data_type=recent-song"
             />
-            <MenuItem Text="আমাদের সম্পর্কে" Route="/aboutus" />
-            <MenuItem Text="Contact Us" Route="/contactus" />
+            <MenuItem Text="আমাদের সম্পর্কে" Route="/about" />
+            <MenuItem Text="Contact Us" Route="/contact" />
           </View>
         </TouchableWithoutFeedback>
       </Modal>
