@@ -27,7 +27,7 @@ const PopularSongs = () => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("songlist", {
-              data: JSON.stringify(data),
+              data_type: "popular-song",
             })
           }
         >

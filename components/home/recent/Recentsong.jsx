@@ -19,7 +19,7 @@ const RecentSong = () => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("songlist", {
-              data: JSON.stringify(data),
+              data_type: "recent-song",
             })
           }
         >

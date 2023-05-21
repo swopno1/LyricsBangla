@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Image, TouchableOpacity, View } from "react-native";
-import { Stack, useRouter, useSearchParams } from "expo-router";
+import { Stack, useRouter, useGlobalSearchParams } from "expo-router";
 import { Text, SafeAreaView } from "react-native";
 
 import { ScreenHeaderBtn, RecentSongCard } from "../components";
 import { COLORS, icons, SIZES } from "../constants";
 import styles from "../styles/search";
+import { useDispatch, useSelector } from "react-redux";
 
 const songlist = () => {
-  // Will change this route params data
-  // Will use state data and filter according to the params category
-
-  const params = useSearchParams();
+  const params = useGlobalSearchParams();
   const router = useRouter();
-  const [data, setData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+
+  const dispatch = useDispatch();
+  const { data, isLoading, error } = useSelector((state) => state.song);
 
   useEffect(() => {
-    if (params.data) {
-      setData(JSON.parse(params.data));
+    if (!data) {
+      dispatch(fetchSong());
     }
-  }, [params]);
+  }, [dispatch, data]);
+
+  useEffect(() => {
+    if (params.data_type === "popular-song") {
+      // This data array will filter with popular song *****
+      setFilterData(data);
+    } else if (params.data_type === "recent-song") {
+      // This data array will filter with popular song *****
+      setFilterData(data);
+    }
+  }, [params, data]);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -28,7 +39,9 @@ const songlist = () => {
   // Calculate the start and end indexes for the current page
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedItems = data ? data.slice(startIndex, endIndex) : [];
+  const paginatedItems = filterData
+    ? filterData.slice(startIndex, endIndex)
+    : [];
 
   // Pagination
 
@@ -52,10 +65,23 @@ const songlist = () => {
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={icons.heart} dimension="100%" />
           ),
-          headerTitle: "",
+          headerTitle:
+            params.data_type === "popular-song"
+              ? "Popular Song"
+              : params.data_type === "recent-song"
+              ? "Recent Song"
+              : "",
         }}
       />
       <View>
+        {isLoading && (
+          <ActivityIndicator
+            size="large"
+            color={COLORS.primary}
+            style={{ paddingTop: 20 }}
+          />
+        )}
+        {error && <Text>Something went wrong! Error: {error}</Text>}
         <FlatList
           data={paginatedItems}
           renderItem={({ item }) => (
