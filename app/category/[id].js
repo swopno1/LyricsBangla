@@ -67,6 +67,9 @@ const SongSearch = () => {
               handlePress={() => router.back()}
             />
           ),
+          headerRight: () => (
+            <ScreenHeaderBtn iconUrl={icons.menu} dimension="70%" />
+          ),
           headerTitle: params.id,
         }}
       />

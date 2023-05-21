@@ -41,8 +41,6 @@ const SongDetails = () => {
     }
   }, [dispatch, data, params.id]);
 
-  console.log(song);
-
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
 

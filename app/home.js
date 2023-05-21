@@ -32,25 +32,25 @@ const Home = () => {
     }
   }, [dispatch, data]);
 
-  // useEffect(() => {
-  //   dispatch(setPopularSong(popularSong));
-  // }, [dispatch, popularSong]);
-
-  // useEffect(() => {
-  //   dispatch(setLatestSong(latestSong));
-  // }, [dispatch, latestSong]);
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
-          headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
-          ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.heart} dimension="100%" />
+            <ScreenHeaderBtn
+              iconUrl={icons.menu}
+              dimension="70%"
+              handlePress="toggleMenu"
+            />
+          ),
+          headerLeft: () => (
+            <ScreenHeaderBtn
+              iconUrl={icons.heart}
+              dimension="70%"
+              handlePress="rateMyApp"
+            />
           ),
           headerTitle: "",
         }}
