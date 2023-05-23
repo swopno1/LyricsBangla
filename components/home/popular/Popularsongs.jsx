@@ -48,6 +48,7 @@ const PopularSongs = () => {
           keyExtractor={(item) => item._id}
           contentContainerStyle={{ columnGap: SIZES.medium }}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </View>
