@@ -14,7 +14,6 @@ import { COLORS, SIZES, icons } from "../../constants";
 import {
   Song,
   SongAbout,
-  SongFooter,
   SongTabs,
   ScreenHeaderBtn,
   Specifics,
@@ -24,7 +23,6 @@ import { fetchSong } from "../../redux/songSlice";
 const SongDetails = () => {
   const tabs = ["Lyrics: গানের কথা", "Details: অন্যান্ন তথ্য"];
   const params = useSearchParams();
-  const router = useRouter();
 
   const [song, setSong] = useState(null);
 
@@ -127,9 +125,6 @@ const SongDetails = () => {
             </View>
           )}
         </ScrollView>
-        <SongFooter
-          url={song?.source_url ?? "https://careers.google.com/jobs/results"}
-        />
       </>
     </SafeAreaView>
   );

@@ -75,10 +75,14 @@ const Home = () => {
             />
           )}
           {error && <Text>Something went wrong! Error: {error}</Text>}
-          {popularSong && <PopularSongs />}
-          {latestSong && <RecentSong />}
+          <PopularSongs />
+          <RecentSong />
         </View>
       </ScrollView>
+      <View style={{ flex: 1, padding: SIZES.medium }}>
+        {/* {popularSong && <PopularSongs />}
+        {latestSong && <RecentSong />} */}
+      </View>
     </SafeAreaView>
   );
 };
