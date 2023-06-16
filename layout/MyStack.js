@@ -6,17 +6,23 @@ import Notifications from '../screens/notifications';
 import {COLORS} from './theme';
 import Category from '../screens/category';
 import Search from '../screens/search';
+import {useColorScheme} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 const MyStack = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? COLORS.secondary : COLORS.lightWhite,
+  };
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          headerStyle: {backgroundColor: COLORS.lightWhite},
+          headerStyle: backgroundStyle,
           headerShadowVisible: false,
           // headerRight: () => (
           //   <ScreenHeaderBtn

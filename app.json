@@ -1,4 +1,10 @@
 {
   "name": "LyricsBangla",
-  "displayName": "LyricsBangla"
+  "displayName": "LyricsBangla",
+  "slug": "LyricsBangla",
+  "extra": {
+    "eas": {
+      "projectId": "a9b8ae8f-3d56-4feb-b0dd-2f44fdf0094d"
+    }
+  }
 }

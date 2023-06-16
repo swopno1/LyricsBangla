@@ -34,13 +34,17 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick, handleClick2}) => {
 
   return (
     <View>
-      <View style={styles.container}>
-        <Text style={styles.userName}>Welcome to Lyrics Bangla</Text>
-        <Text style={styles.welcomeMessage}>পছন্দের গানের লিরিকস খুঁজুন</Text>
+      <View style={styles.container(isDarkMode)}>
+        <Text style={styles.userName(isDarkMode)}>
+          Welcome to Lyrics Bangla
+        </Text>
+        <Text style={styles.welcomeMessage(isDarkMode)}>
+          পছন্দের গানের লিরিকস খুঁজুন
+        </Text>
       </View>
 
       <View style={styles.searchContainer}>
-        <View style={styles.searchWrapper}>
+        <View style={styles.searchWrapper(isDarkMode)}>
           <TextInput
             style={styles.searchInput}
             value={searchTerm}
@@ -83,21 +87,21 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick, handleClick2}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: isDarkMode => ({
     width: '100%',
     paddingHorizontal: 24,
-  },
-  userName: {
+  }),
+  userName: isDarkMode => ({
     fontFamily: FONT.regular,
     fontSize: SIZES.large,
-    color: COLORS.secondary,
-  },
-  welcomeMessage: {
+    color: isDarkMode ? COLORS.white : COLORS.primary,
+  }),
+  welcomeMessage: isDarkMode => ({
     fontFamily: FONT.bold,
     fontSize: SIZES.xLarge,
-    color: COLORS.primary,
+    color: isDarkMode ? COLORS.white : COLORS.primary,
     marginTop: 2,
-  },
+  }),
   searchContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -106,15 +110,15 @@ const styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 24,
   },
-  searchWrapper: {
+  searchWrapper: isDarkMode => ({
     flex: 1,
-    backgroundColor: COLORS.white,
     marginRight: SIZES.small,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: SIZES.medium,
     height: '100%',
-  },
+    backgroundColor: isDarkMode ? COLORS.gray : COLORS.white,
+  }),
   searchInput: {
     fontFamily: FONT.regular,
     width: '100%',

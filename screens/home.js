@@ -8,9 +8,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useDispatch, useSelector} from 'react-redux';
+
 import {fetchSong} from '../redux/songSlice';
 import Welcome from '../components/Welcome';
 import {COLORS} from '../layout/theme';
@@ -21,15 +20,13 @@ const Home = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: isDarkMode ? COLORS.secondary : COLORS.lightWhite,
   };
 
   const [searchTerm, setSearchTerm] = useState('');
 
   const dispatch = useDispatch();
-  const {data, popularSong, latestSong, isLoading, error} = useSelector(
-    state => state.song,
-  );
+  const {data, isLoading, error} = useSelector(state => state.song);
 
   useEffect(() => {
     if (!data) {
@@ -43,9 +40,7 @@ const Home = ({navigation}) => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
           <Welcome
             searchTerm={searchTerm}
@@ -70,7 +65,7 @@ const Home = ({navigation}) => {
               style={{paddingTop: 20}}
             />
           )}
-          {error && <Text>Something went wrong! Error: {error}</Text>}
+          {error && <Text>Something went wrong! Error : {error}</Text>}
 
           <PopularSongs />
           <RecentSong />
