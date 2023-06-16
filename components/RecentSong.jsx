@@ -12,14 +12,14 @@ const RecentSong = ({isDarkMode}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>নতুন গান</Text>
+        <Text style={styles.headerTitle(isDarkMode)}>নতুন গান</Text>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('songlist', {
               data_type: 'recent-song',
             })
           }>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Text style={styles.headerBtn(isDarkMode)}>Show all</Text>
         </TouchableOpacity>
       </View>
 
@@ -29,6 +29,7 @@ const RecentSong = ({isDarkMode}) => {
             data={latestSong}
             renderItem={({item}) => (
               <RecentSongCard
+                isDarkMode={isDarkMode}
                 song={item}
                 key={`recent-song-${item?._id}`}
                 // handleNavigate={() => router.push(`/details/${item?._id}`)}
@@ -48,6 +49,7 @@ const RecentSong = ({isDarkMode}) => {
 const styles = StyleSheet.create({
   container: {
     marginTop: SIZES.xLarge,
+    marginBottom: SIZES.xLarge,
   },
   header: {
     flexDirection: 'row',
@@ -56,16 +58,16 @@ const styles = StyleSheet.create({
     marginTop: SIZES.small,
     paddingHorizontal: 24,
   },
-  headerTitle: {
+  headerTitle: isDarkMode => ({
     fontSize: SIZES.large,
     fontFamily: FONT.medium,
-    color: COLORS.primary,
-  },
-  headerBtn: {
+    color: isDarkMode ? COLORS.white : COLORS.primary,
+  }),
+  headerBtn: isDarkMode => ({
     fontSize: SIZES.medium,
     fontFamily: FONT.medium,
-    color: COLORS.gray,
-  },
+    color: isDarkMode ? COLORS.gray2 : COLORS.gray,
+  }),
   cardsContainer: {
     marginTop: SIZES.medium,
     gap: SIZES.small,

@@ -2,9 +2,11 @@ import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {COLORS, SHADOWS, SIZES} from '../layout/theme';
 import {checkImageURL} from '../utils';
 
-const RecentSongCard = ({song, handleNavigate}) => {
+const RecentSongCard = ({song, handleNavigate, isDarkMode}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={handleNavigate}>
+    <TouchableOpacity
+      style={styles.container(isDarkMode)}
+      onPress={handleNavigate}>
       <TouchableOpacity style={styles.logoContainer}>
         <Image
           source={{
@@ -29,17 +31,17 @@ const RecentSongCard = ({song, handleNavigate}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: isDarkMode => ({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
     padding: SIZES.medium,
     borderRadius: SIZES.small,
-    backgroundColor: '#FFF',
+    backgroundColor: isDarkMode ? COLORS.gray2 : COLORS.white,
     ...SHADOWS.medium,
-    shadowColor: COLORS.white,
-  },
+    shadowColor: isDarkMode ? COLORS.gray2 : COLORS.white,
+  }),
   logoContainer: {
     width: 50,
     height: 50,
