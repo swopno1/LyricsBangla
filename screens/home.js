@@ -43,6 +43,7 @@ const Home = ({navigation}) => {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
           <Welcome
+            isDarkMode={isDarkMode}
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
             handleClick={() => {
@@ -67,8 +68,8 @@ const Home = ({navigation}) => {
           )}
           {error && <Text>Something went wrong! Error : {error}</Text>}
 
-          <PopularSongs />
-          <RecentSong />
+          <PopularSongs isDarkMode={isDarkMode} />
+          <RecentSong isDarkMode={isDarkMode} />
         </View>
       </ScrollView>
     </SafeAreaView>

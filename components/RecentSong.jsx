@@ -5,7 +5,7 @@ import {COLORS, FONT, SIZES} from '../layout/theme';
 import RecentSongCard from './RecentSongCard';
 import {useNavigation} from '@react-navigation/native';
 
-const RecentSong = () => {
+const RecentSong = ({isDarkMode}) => {
   const navigation = useNavigation();
   const latestSong = useSelector(state => state.song.latestSong);
 

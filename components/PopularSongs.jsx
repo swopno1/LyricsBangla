@@ -5,11 +5,9 @@ import {useNavigation} from '@react-navigation/native';
 import PopularSongCard from './PopularSongCard';
 import {COLORS, FONT, SIZES} from '../layout/theme';
 
-const PopularSongs = () => {
+const PopularSongs = ({isDarkMode}) => {
   const popularSong = useSelector(state => state.song.popularSong);
-
   const navigation = useNavigation();
-
   const [selectedSong, setSelectedSong] = useState();
 
   const handleCardPress = item => {
@@ -20,14 +18,14 @@ const PopularSongs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>জনপ্রিয় গান</Text>
+        <Text style={styles.headerTitle(isDarkMode)}>জনপ্রিয় গান</Text>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('songlist', {
               data_type: 'popular-song',
             })
           }>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Text style={styles.headerBtn(isDarkMode)}>Show all</Text>
         </TouchableOpacity>
       </View>
 
@@ -36,6 +34,7 @@ const PopularSongs = () => {
           data={popularSong}
           renderItem={({item}) => (
             <PopularSongCard
+              isDarkMode={isDarkMode}
               item={item}
               selectedSong={selectedSong}
               handleCardPress={handleCardPress}
@@ -61,16 +60,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
   },
-  headerTitle: {
+  headerTitle: isDarkMode => ({
     fontSize: SIZES.large,
     fontFamily: FONT.medium,
-    color: COLORS.primary,
-  },
-  headerBtn: {
+    color: isDarkMode ? COLORS.white : COLORS.primary,
+  }),
+  headerBtn: isDarkMode => ({
     fontSize: SIZES.medium,
     fontFamily: FONT.medium,
-    color: COLORS.gray,
-  },
+    color: isDarkMode ? COLORS.gray2 : COLORS.gray,
+  }),
   cardsContainer: {
     marginTop: SIZES.medium,
   },

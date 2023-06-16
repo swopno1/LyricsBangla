@@ -28,9 +28,14 @@ const songTypes = [
   'বিবিধ গান',
 ];
 
-const Welcome = ({searchTerm, setSearchTerm, handleClick, handleClick2}) => {
-  const [activeSongType, setActiveSongType] = useState('Full-time');
-  const isDarkMode = useColorScheme() === 'dark';
+const Welcome = ({
+  searchTerm,
+  setSearchTerm,
+  handleClick,
+  handleClick2,
+  isDarkMode,
+}) => {
+  const [activeSongType, setActiveSongType] = useState('');
 
   return (
     <View>
@@ -67,13 +72,15 @@ const Welcome = ({searchTerm, setSearchTerm, handleClick, handleClick2}) => {
           data={songTypes}
           renderItem={({item}) => (
             <TouchableOpacity
-              style={styles.tab(activeSongType, item)}
+              style={styles.tab(activeSongType, isDarkMode, item)}
               onPress={() => {
                 handleClick2();
                 setActiveSongType(item);
                 setSearchTerm(item);
               }}>
-              <Text style={styles.tabText(activeSongType, item)}>{item}</Text>
+              <Text style={styles.tabText(activeSongType, isDarkMode, item)}>
+                {item}
+              </Text>
             </TouchableOpacity>
           )}
           keyExtractor={item => item}
@@ -142,16 +149,26 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: SIZES.medium,
   },
-  tab: (activeSongType, item) => ({
+  tab: (activeSongType, isDarkMode, item) => ({
     paddingVertical: SIZES.small / 2,
     paddingHorizontal: SIZES.small,
     borderRadius: SIZES.medium,
     borderWidth: 1,
-    borderColor: activeSongType === item ? COLORS.secondary : COLORS.gray2,
+    borderColor:
+      activeSongType === item && isDarkMode
+        ? COLORS.lightWhite
+        : activeSongType === item && !isDarkMode
+        ? COLORS.secondary
+        : COLORS.gray2,
   }),
-  tabText: (activeSongType, item) => ({
+  tabText: (activeSongType, isDarkMode, item) => ({
     fontFamily: FONT.medium,
-    color: activeSongType === item ? COLORS.secondary : COLORS.gray2,
+    color:
+      activeSongType === item && isDarkMode
+        ? COLORS.lightWhite
+        : activeSongType === item && !isDarkMode
+        ? COLORS.primary
+        : COLORS.gray2,
   }),
 });
 

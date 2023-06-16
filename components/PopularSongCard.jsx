@@ -2,12 +2,13 @@ import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {COLORS, FONT, SHADOWS, SIZES} from '../layout/theme';
 import {checkImageURL} from '../utils';
 
-const PopularSongCard = ({item, selectedSong, handleCardPress}) => {
+const PopularSongCard = ({item, selectedSong, handleCardPress, isDarkMode}) => {
   return (
     <TouchableOpacity
-      style={styles.container(selectedSong, item)}
+      style={styles.container(selectedSong, isDarkMode, item)}
       onPress={() => handleCardPress(item)}>
-      <TouchableOpacity style={styles.logoContainer(selectedSong, item)}>
+      <TouchableOpacity
+        style={styles.logoContainer(selectedSong, isDarkMode, item)}>
         <Image
           source={{
             uri: checkImageURL(item?.image_url)
@@ -18,12 +19,14 @@ const PopularSongCard = ({item, selectedSong, handleCardPress}) => {
           style={styles.logoImage}
         />
       </TouchableOpacity>
-      <Text style={styles.songName} numberOfLines={1}>
+      <Text style={styles.songName(isDarkMode)} numberOfLines={1}>
         {item.title}
       </Text>
 
       <View style={styles.infoContainer}>
-        <Text style={styles.songName(selectedSong, item)} numberOfLines={1}>
+        <Text
+          style={styles.songName2(selectedSong, isDarkMode, item)}
+          numberOfLines={1}>
           {item.title}
         </Text>
         <View style={styles.infoWrapper}>
@@ -38,19 +41,29 @@ const PopularSongCard = ({item, selectedSong, handleCardPress}) => {
 };
 
 const styles = StyleSheet.create({
-  container: (selectedSong, item) => ({
+  container: (selectedSong, isDarkMode, item) => ({
     width: 250,
     padding: SIZES.xLarge,
-    backgroundColor: selectedSong === item._id ? COLORS.primary : '#FFF',
+    backgroundColor:
+      selectedSong === item._id && isDarkMode
+        ? COLORS.primary
+        : selectedSong === item._id && !isDarkMode
+        ? COLORS.gray2
+        : isDarkMode
+        ? COLORS.gray2
+        : COLORS.white,
     borderRadius: SIZES.medium,
     justifyContent: 'space-between',
     ...SHADOWS.medium,
-    shadowColor: COLORS.white,
+    shadowColor: isDarkMode ? COLORS.primary : COLORS.white,
   }),
-  logoContainer: (selectedSong, item) => ({
+  logoContainer: (selectedSong, isDarkMode, item) => ({
     width: 50,
     height: 50,
-    backgroundColor: selectedSong === item._id ? '#FFF' : COLORS.white,
+    backgroundColor:
+      selectedSong === item._id && isDarkMode
+        ? COLORS.white
+        : COLORS.lightWhite,
     borderRadius: SIZES.medium,
     justifyContent: 'center',
     alignItems: 'center',
@@ -59,19 +72,26 @@ const styles = StyleSheet.create({
     width: '70%',
     height: '70%',
   },
-  songName: {
+  songName: isDarkMode => ({
     fontSize: SIZES.medium,
     fontFamily: FONT.regular,
-    color: '#B3AEC6',
+    color: isDarkMode ? COLORS.gray : COLORS.tertiary,
     marginTop: SIZES.small / 1.5,
-  },
+  }),
   infoContainer: {
     marginTop: SIZES.large,
   },
-  songName: (selectedSong, item) => ({
+  songName2: (selectedSong, isDarkMode, item) => ({
     fontSize: SIZES.large,
     fontFamily: FONT.medium,
-    color: selectedSong === item._id ? COLORS.white : COLORS.primary,
+    color:
+      selectedSong === item._id && isDarkMode
+        ? COLORS.white
+        : selectedSong === item._id && !isDarkMode
+        ? COLORS.primary
+        : isDarkMode
+        ? COLORS.primary
+        : COLORS.gray,
   }),
   infoWrapper: {
     flexDirection: 'row',
