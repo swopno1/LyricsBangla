@@ -1,18 +1,20 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {useColorScheme} from 'react-native';
+
 const initialState = {
-  colorMode: 'light',
+  colorMode: 'light', // This is not yet using, I may not use this approach
   isAuthenticated: false,
 };
 
 const settingsSlice = createSlice({
   name: 'settings',
-  initialState: initialState,
+  initialState,
   reducers: {
-    changeColorMode: (state, action) => {
-      state.colorMode = !state.colorMode;
+    setColorMode: (state, action) => {
+      state.colorMode = action.payload;
     },
   },
 });
 
-export const {changeColorMode} = settingsSlice.actions;
+export const {setColorMode} = settingsSlice.actions;
 export default settingsSlice.reducer;

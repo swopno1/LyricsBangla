@@ -7,7 +7,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {fetchSong} from '../redux/songSlice';
@@ -15,6 +15,7 @@ import Welcome from '../components/Welcome';
 import {COLORS} from '../layout/theme';
 import PopularSongs from '../components/PopularSongs';
 import RecentSong from '../components/RecentSong';
+import NecessaryLink from '../components/NecessaryLink';
 
 const Home = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -52,6 +53,12 @@ const Home = ({navigation}) => {
 
           <PopularSongs isDarkMode={isDarkMode} />
           <RecentSong isDarkMode={isDarkMode} />
+
+          <NecessaryLink
+            isDarkMode={isDarkMode}
+            data={data}
+            isVertical={false}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
