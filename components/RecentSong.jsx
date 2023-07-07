@@ -60,12 +60,10 @@ const styles = StyleSheet.create({
   },
   headerTitle: isDarkMode => ({
     fontSize: SIZES.large,
-    fontFamily: FONT.medium,
     color: isDarkMode ? COLORS.white : COLORS.primary,
   }),
   headerBtn: isDarkMode => ({
     fontSize: SIZES.medium,
-    fontFamily: FONT.medium,
     color: isDarkMode ? COLORS.gray2 : COLORS.gray,
   }),
   cardsContainer: {

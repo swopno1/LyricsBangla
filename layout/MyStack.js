@@ -42,8 +42,24 @@ const MyStack = () => {
         }}
       />
       <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="Category" component={Category} />
-      <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen
+        name="Category"
+        component={Category}
+        options={{
+          headerStyle: backgroundStyle,
+          headerShadowVisible: false,
+          headerTitle: '',
+        }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={{
+          headerStyle: backgroundStyle,
+          headerShadowVisible: false,
+          headerTitle: '',
+        }}
+      />
     </Stack.Navigator>
   );
 };

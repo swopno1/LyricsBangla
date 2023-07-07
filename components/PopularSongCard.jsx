@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import {COLORS, FONT, SHADOWS, SIZES} from '../layout/theme';
+import {COLORS, SHADOWS, SIZES} from '../layout/theme';
 import {checkImageURL} from '../utils';
 
 const PopularSongCard = ({item, selectedSong, handleCardPress, isDarkMode}) => {
@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
   },
   songName: isDarkMode => ({
     fontSize: SIZES.medium,
-    fontFamily: FONT.regular,
     color: isDarkMode ? COLORS.gray : COLORS.tertiary,
     marginTop: SIZES.small / 1.5,
   }),
@@ -83,7 +82,6 @@ const styles = StyleSheet.create({
   },
   songName2: (selectedSong, isDarkMode, item) => ({
     fontSize: SIZES.large,
-    fontFamily: FONT.medium,
     color:
       selectedSong === item._id && isDarkMode
         ? COLORS.white
@@ -101,12 +99,10 @@ const styles = StyleSheet.create({
   },
   publisher: (selectedSong, item) => ({
     fontSize: SIZES.medium - 2,
-    fontFamily: FONT.regular,
     color: selectedSong === item._id ? COLORS.white : COLORS.primary,
   }),
   location: {
     fontSize: SIZES.medium - 2,
-    fontFamily: FONT.regular,
     color: '#B3AEC6',
   },
 });

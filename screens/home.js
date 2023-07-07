@@ -23,8 +23,6 @@ const Home = ({navigation}) => {
     backgroundColor: isDarkMode ? COLORS.secondary : COLORS.lightWhite,
   };
 
-  const [searchTerm, setSearchTerm] = useState('');
-
   const dispatch = useDispatch();
   const {data, isLoading, error} = useSelector(state => state.song);
 
@@ -42,23 +40,7 @@ const Home = ({navigation}) => {
       />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
-          <Welcome
-            isDarkMode={isDarkMode}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            handleClick={() => {
-              if (searchTerm) {
-                navigation.navigate('Search', {
-                  searchTerm: searchTerm,
-                });
-              }
-            }}
-            handleClick2={() => {
-              navigation.navigate('Category', {
-                searchTerm: searchTerm,
-              });
-            }}
-          />
+          <Welcome isDarkMode={isDarkMode} navigation={navigation} />
           {isLoading && (
             <ActivityIndicator
               size="large"

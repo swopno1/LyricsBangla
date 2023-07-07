@@ -7,34 +7,11 @@ import {
   Image,
   FlatList,
   StyleSheet,
-  useColorScheme,
 } from 'react-native';
-import {COLORS, FONT, SIZES} from '../layout/theme';
-import icons from '../layout/icons';
+import {COLORS, FONT, SIZES, icons, songTypes} from '../layout/constants';
 
-const songTypes = [
-  'আধুনিক বাংলা',
-  'দেশাত্মবোধক',
-  'বাউল গান',
-  'নজরুলগীতি',
-  'রবীন্দ্রসঙ্গীত',
-  'লালনগীতি',
-  'ভক্তিগীতি',
-  'ফোক গান',
-  'ব্যান্ড ও পপ',
-  'সিনেমার গান',
-  'পদাবলী-কীর্তন',
-  'অসম্পূর্ণ গানের লিরিক',
-  'বিবিধ গান',
-];
-
-const Welcome = ({
-  searchTerm,
-  setSearchTerm,
-  handleClick,
-  handleClick2,
-  isDarkMode,
-}) => {
+const Welcome = ({navigation, isDarkMode, handleClick}) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const [activeSongType, setActiveSongType] = useState('');
 
   return (
@@ -58,7 +35,15 @@ const Welcome = ({
           />
         </View>
 
-        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
+        <TouchableOpacity
+          style={styles.searchBtn}
+          onPress={() => {
+            if (searchTerm) {
+              navigation.navigate('Search', {
+                searchTerm: searchTerm,
+              });
+            }
+          }}>
           <Image
             source={icons.search}
             resizeMode="contain"
@@ -74,16 +59,18 @@ const Welcome = ({
             <TouchableOpacity
               style={styles.tab(activeSongType, isDarkMode, item)}
               onPress={() => {
-                handleClick2();
-                setActiveSongType(item);
-                setSearchTerm(item);
+                setActiveSongType(item.slug);
+                setSearchTerm(item.slug);
+                navigation.navigate('Category', {
+                  searchTerm: item.slug,
+                });
               }}>
               <Text style={styles.tabText(activeSongType, isDarkMode, item)}>
-                {item}
+                {item.type}
               </Text>
             </TouchableOpacity>
           )}
-          keyExtractor={item => item}
+          keyExtractor={item => item._id}
           contentContainerStyle={{columnGap: SIZES.small}}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -99,12 +86,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   }),
   userName: isDarkMode => ({
-    fontFamily: FONT.regular,
     fontSize: SIZES.large,
     color: isDarkMode ? COLORS.white : COLORS.primary,
   }),
   welcomeMessage: isDarkMode => ({
-    fontFamily: FONT.bold,
     fontSize: SIZES.xLarge,
     color: isDarkMode ? COLORS.white : COLORS.primary,
     marginTop: 2,
@@ -127,7 +112,6 @@ const styles = StyleSheet.create({
     backgroundColor: isDarkMode ? COLORS.gray : COLORS.white,
   }),
   searchInput: {
-    fontFamily: FONT.regular,
     width: '100%',
     height: '100%',
     paddingHorizontal: SIZES.medium,
@@ -162,7 +146,6 @@ const styles = StyleSheet.create({
         : COLORS.gray2,
   }),
   tabText: (activeSongType, isDarkMode, item) => ({
-    fontFamily: FONT.medium,
     color:
       activeSongType === item && isDarkMode
         ? COLORS.lightWhite
