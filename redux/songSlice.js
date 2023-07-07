@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
+import {getRandomItems} from '../utils';
 
 // Async thunk action creator for fetching song data
 export const fetchSong = createAsyncThunk('song/fetchSong', async () => {
@@ -53,12 +54,6 @@ const songSlice = createSlice({
       });
   },
 });
-
-// Utility function to get random items from an array
-const getRandomItems = (array, count) => {
-  const shuffled = array.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-};
 
 export const {setPopularSong, setLatestSong} = songSlice.actions;
 export default songSlice.reducer;
