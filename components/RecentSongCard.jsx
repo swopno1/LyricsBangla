@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import {COLORS, SHADOWS, SIZES} from '../layout/theme';
+import {COLORS, FONT, SHADOWS, SIZES} from '../layout/theme';
 import {checkImageURL} from '../utils';
 
 const RecentSongCard = ({song, handleNavigate, isDarkMode}) => {
@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
   },
   songName: {
     fontSize: SIZES.medium,
-    fontFamily: 'DMBold',
+    // fontFamily: FONT.bold,
     color: COLORS.primary,
   },
   songType: {
     fontSize: SIZES.small + 2,
-    fontFamily: 'DMRegular',
+    // fontFamily: FONT.regular,
     color: COLORS.gray,
     marginTop: 3,
     textTransform: 'capitalize',

@@ -8,6 +8,11 @@ import share from '../assets/icons/share.png';
 import location from '../assets/icons/location.png';
 import chevronLeft from '../assets/icons/chevron-left.png';
 import chevronRight from '../assets/icons/chevron-right.png';
+import amirNft from '../assets/icons/amirNft.png';
+import youTube from '../assets/icons/youTube.png';
+import spotify from '../assets/icons/spotify.png';
+import saregama from '../assets/icons/saregama.webp';
+import musicBd from '../assets/icons/musicBd.png';
 
 export default {
   heart,
@@ -20,4 +25,9 @@ export default {
   location,
   chevronLeft,
   chevronRight,
+  amirNft,
+  youTube,
+  spotify,
+  saregama,
+  musicBd,
 };

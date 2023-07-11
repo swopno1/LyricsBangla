@@ -17,7 +17,7 @@ const NecessaryLinkCard = ({icon, title, url}) => {
   return (
     <TouchableOpacity style={styles.cardContainer} onPress={handlePress}>
       <View style={styles.iconContainer}>
-        <Image source={icon} />
+        <Image source={icon} style={styles.iconStyle} resizeMode="stretch" />
       </View>
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
@@ -28,19 +28,22 @@ export default NecessaryLinkCard;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: '30%',
-    margin: 10,
+    width: '100%',
     padding: 10,
-    backgroundColor: '#ebebeb',
+    backgroundColor: COLORS.white,
     borderRadius: 10,
     alignItems: 'center',
   },
   iconContainer: {
     marginBottom: 10,
   },
+  iconStyle: {
+    width: 50,
+    height: 50,
+  },
   title: {
     textAlign: 'center',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '900',
   },
 });
