@@ -1,32 +1,31 @@
 import {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {View, Text, TouchableOpacity, FlatList, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import PopularSongCard from './PopularSongCard';
 import {COLORS, FONT, SIZES} from '../layout/theme';
 
-const PopularSongs = ({isDarkMode}) => {
+const PopularSongs = ({isDarkMode, navigation}) => {
   const popularSong = useSelector(state => state.song.popularSong);
-  const navigation = useNavigation();
   const [selectedSong, setSelectedSong] = useState();
 
   const handleCardPress = item => {
-    //   router.push(`/details/${item._id}`);
-    setSelectedSong(item._id);
+    navigation.navigate('SongDetails', {
+      songId: item._id,
+    });
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle(isDarkMode)}>জনপ্রিয় গান</Text>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() =>
             navigation.navigate('songlist', {
               data_type: 'popular-song',
             })
           }>
-          {/* <Text style={styles.headerBtn(isDarkMode)}>Show all</Text> */}
-        </TouchableOpacity>
+          <Text style={styles.headerBtn(isDarkMode)}>Show all</Text>
+        </TouchableOpacity> */}
       </View>
 
       <View style={styles.cardsContainer}>

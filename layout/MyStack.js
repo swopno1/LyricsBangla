@@ -6,6 +6,7 @@ import Notifications from '../screens/notifications';
 import {COLORS} from './theme';
 import Search from '../screens/search';
 import {useColorScheme} from 'react-native';
+import SongDetails from '../screens/songDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +45,15 @@ const MyStack = () => {
       <Stack.Screen
         name="Search"
         component={Search}
+        options={{
+          headerStyle: backgroundStyle,
+          headerShadowVisible: false,
+          headerTitle: '',
+        }}
+      />
+      <Stack.Screen
+        name="SongDetails"
+        component={SongDetails}
         options={{
           headerStyle: backgroundStyle,
           headerShadowVisible: false,

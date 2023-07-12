@@ -69,8 +69,8 @@ const Home = ({navigation}) => {
           )}
           {error && <Text>Something went wrong! Error : {error}</Text>}
 
-          <PopularSongs isDarkMode={isDarkMode} />
-          <RecentSong isDarkMode={isDarkMode} />
+          <PopularSongs isDarkMode={isDarkMode} navigation={navigation} />
+          <RecentSong isDarkMode={isDarkMode} navigation={navigation} />
 
           <NecessaryLink
             isDarkMode={isDarkMode}

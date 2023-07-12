@@ -2,11 +2,11 @@ import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {COLORS, FONT, SHADOWS, SIZES} from '../layout/theme';
 import {checkImageURL} from '../utils';
 
-const RecentSongCard = ({song, handleNavigate, isDarkMode}) => {
+const RecentSongCard = ({song, handleCardPress, isDarkMode}) => {
   return (
     <TouchableOpacity
       style={styles.container(isDarkMode)}
-      onPress={handleNavigate}>
+      onPress={() => handleCardPress(song)}>
       <TouchableOpacity style={styles.logoContainer}>
         <Image
           source={{

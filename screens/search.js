@@ -10,7 +10,7 @@ import {useSelector} from 'react-redux';
 import RecentSongCard from '../components/RecentSongCard';
 import {COLORS, SIZES} from '../layout/theme';
 
-const Search = ({route, navigation}) => {
+const Search = ({route}) => {
   const isDarkMode = useColorScheme() === 'dark';
   const [searchResult, setSearchResult] = useState(null);
   const songData = useSelector(state => state.song.data);

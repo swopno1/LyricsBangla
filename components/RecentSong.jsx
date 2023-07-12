@@ -5,22 +5,27 @@ import {COLORS, FONT, SIZES} from '../layout/theme';
 import RecentSongCard from './RecentSongCard';
 import {useNavigation} from '@react-navigation/native';
 
-const RecentSong = ({isDarkMode}) => {
-  const navigation = useNavigation();
+const RecentSong = ({isDarkMode, navigation}) => {
   const latestSong = useSelector(state => state.song.latestSong);
+
+  const handleCardPress = item => {
+    navigation.navigate('SongDetails', {
+      songId: item._id,
+    });
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle(isDarkMode)}>নতুন গান</Text>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() =>
             navigation.navigate('songlist', {
               data_type: 'recent-song',
             })
           }>
-          {/* <Text style={styles.headerBtn(isDarkMode)}>Show all</Text> */}
-        </TouchableOpacity>
+          <Text style={styles.headerBtn(isDarkMode)}>Show all</Text>
+        </TouchableOpacity> */}
       </View>
 
       <View style={styles.cardsContainer}>
@@ -32,7 +37,7 @@ const RecentSong = ({isDarkMode}) => {
                 isDarkMode={isDarkMode}
                 song={item}
                 key={`recent-song-${item?._id}`}
-                // handleNavigate={() => router.push(`/details/${item?._id}`)}
+                handleCardPress={handleCardPress}
               />
             )}
             keyExtractor={item => item._id}
