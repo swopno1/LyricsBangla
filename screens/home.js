@@ -24,6 +24,7 @@ const Home = ({navigation}) => {
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? COLORS.secondary : COLORS.lightWhite,
+    minHeight: '100%',
   };
 
   const dispatch = useDispatch();

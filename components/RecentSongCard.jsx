@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     padding: SIZES.medium,
+    marginBottom: 10,
     borderRadius: SIZES.small,
     backgroundColor: isDarkMode ? COLORS.gray2 : COLORS.white,
     ...SHADOWS.medium,

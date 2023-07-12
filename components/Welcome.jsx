@@ -11,15 +11,14 @@ import {
 import {COLORS, FONT, SIZES, icons, songTypes} from '../layout/constants';
 
 const Welcome = ({navigation, isDarkMode, handleClick}) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(null);
+  const [category, setCategory] = useState(null);
   const [activeSongType, setActiveSongType] = useState('');
 
   return (
     <View>
       <View style={styles.container(isDarkMode)}>
-        <Text style={styles.userName(isDarkMode)}>
-          Welcome to Lyrics Bangla
-        </Text>
+        <Text style={styles.appName(isDarkMode)}>Welcome to Lyrics Bangla</Text>
         <Text style={styles.welcomeMessage(isDarkMode)}>
           পছন্দের গানের লিরিকস খুঁজুন
         </Text>
@@ -40,7 +39,7 @@ const Welcome = ({navigation, isDarkMode, handleClick}) => {
           onPress={() => {
             if (searchTerm) {
               navigation.navigate('Search', {
-                searchTerm: searchTerm,
+                searchTerm,
               });
             }
           }}>
@@ -61,8 +60,8 @@ const Welcome = ({navigation, isDarkMode, handleClick}) => {
               onPress={() => {
                 setActiveSongType(item.slug);
                 setSearchTerm(item.slug);
-                navigation.navigate('Category', {
-                  searchTerm: item.slug,
+                navigation.navigate('Search', {
+                  category: item.type,
                 });
               }}>
               <Text style={styles.tabText(activeSongType, isDarkMode, item)}>
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 24,
   }),
-  userName: isDarkMode => ({
+  appName: isDarkMode => ({
     fontSize: SIZES.large,
     color: isDarkMode ? COLORS.white : COLORS.primary,
   }),

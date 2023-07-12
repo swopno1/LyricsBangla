@@ -19,7 +19,7 @@ const RecentSong = ({isDarkMode}) => {
               data_type: 'recent-song',
             })
           }>
-          <Text style={styles.headerBtn(isDarkMode)}>Show all</Text>
+          {/* <Text style={styles.headerBtn(isDarkMode)}>Show all</Text> */}
         </TouchableOpacity>
       </View>
 

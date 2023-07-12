@@ -4,7 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/home';
 import Notifications from '../screens/notifications';
 import {COLORS} from './theme';
-import Category from '../screens/category';
 import Search from '../screens/search';
 import {useColorScheme} from 'react-native';
 
@@ -42,15 +41,6 @@ const MyStack = () => {
         }}
       />
       <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen
-        name="Category"
-        component={Category}
-        options={{
-          headerStyle: backgroundStyle,
-          headerShadowVisible: false,
-          headerTitle: '',
-        }}
-      />
       <Stack.Screen
         name="Search"
         component={Search}
